@@ -12,12 +12,12 @@ import { FaPix } from "react-icons/fa6";
 
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
-export function CartResume({ address, setAddress, visivelButton }) {
+export function CartResume({ visivelButton }) {
     useEffect(() => {
         initMercadoPago('APP_USR-3c5a09a1-faf8-483b-be85-bbd552a550ea', { locale: 'pt-BR' });
     }, []);
 
-    const { cartProducts, finalPrice, clearCart } = useCart();
+    const { cartProducts, finalPrice, address } = useCart();
     const [deliveryTax] = useState(5);
     const [updatedFinalPrice, setUpdatedFinalPrice] = useState(finalPrice);
     const [preferenceId, setPreferenceId] = useState(null); // Estado para armazenar preferenceId
@@ -51,6 +51,7 @@ export function CartResume({ address, setAddress, visivelButton }) {
             quantity: 1,
             price: deliveryTax
         });
+        
 
         try {
             // Envia o método de pagamento junto com os itens
@@ -59,6 +60,7 @@ export function CartResume({ address, setAddress, visivelButton }) {
             if (data.id) {
                 setPreferenceId(data.id); // Atualiza o estado com o preferenceId
             }
+            
         } catch (error) {
             console.error("Erro no processo de pagamento:", error);
             toast.error('Erro ao processar pagamento!');

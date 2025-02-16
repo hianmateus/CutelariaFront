@@ -75,7 +75,7 @@ export function Header() {
                         <img src={OrderICon} alt="icon-Orders-png"/>
                     </div>
 
-                    <Count to='/carrinho'>Pedidos</Count>
+                    <Count to='/carrinho'>Carrinho</Count>
                 </Pedidos>
 
             </ContainerRight>

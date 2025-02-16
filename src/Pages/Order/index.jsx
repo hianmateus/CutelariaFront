@@ -3,17 +3,22 @@ import { Banner, Content, General, Title, Contentpat1, Containerinfo, HeaderTop,
 import { Credits, CartResume } from "../../components";
 import LogoImage from '../../assets/imgs/ModeloLogo3.png'
 import { useForm } from "react-hook-form";
+import { useCart } from '../../hooks/CartContext';
 
 export function Order() {
     const { register, handleSubmit, setValue, setFocus, reset } = useForm();
-    const [address, setAddress] = useState({});
+    const { address, setAddress } = useCart();
     const [visivelInfo, setVisivelInfo] = useState(true)
 
     const onSubmit = (data) => {
-        setAddress(prevAddress => ({
-            ...prevAddress,
-            ...data
-        }));
+        setAddress({ // Mantém qualquer dado anterior
+            cep: data.cep,  
+            state: data.state,
+            city: data.city,
+            neighborhood: data.neighborhood,
+            street: data.street,
+            complemento: data.complemento
+        });
         setVisivelInfo(false)
     };
 

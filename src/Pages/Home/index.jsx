@@ -15,13 +15,58 @@ import CardBackground from '../../assets/imgs/Section1/CardBackground.png'
 import CardBackground1 from '../../assets/imgs/Section1/CardBackground1.png'
 import CardBackground2 from '../../assets/imgs/Section1/CardBackground2.png'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
+import { useCart } from "../../hooks/CartContext"; // Hook do carrinho
+import { useNavigate, useSearchParams } from "react-router-dom"; // Para capturar parâmetros da URL
+import { toast } from "react-toastify"; // Para exibir o toast
+import { api } from '../../services/api';
+
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 export function Home() {
     const [isBGVisible, setIsBGVisible] = useState(false);
     const [activeCategory, setActiveCategory] = useState();
+    const { clearCart, address, cartProducts } = useCart(); // Função para limpar o carrinho
+    const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const requestSent = useRef(false); // ✅ Referência para evitar múltiplas execuções
+
+    useEffect(() => {
+        const status = searchParams.get("status");
+
+        if (status === "success" && !requestSent.current && cartProducts.length > 0) {
+            requestSent.current = true; // ✅ Marca como enviado
+
+            console.log("🏠 Endereço recebido no Home:", address);
+            console.log("🛒 Produtos no carrinho antes do envio:", cartProducts);
+
+            const products = cartProducts.map((product) => ({
+                id: product.id,
+                quantity: product.quantity
+            }));
+
+            api.post('/orders', { products, address }, { validateStatus: () => true })
+                .then(({ status }) => {
+                    if (status === 200 || status === 201) {
+                        toast.success("🎉 Pedido Realizado com Sucesso!");
+                        setTimeout(() => navigate("/", { replace: true }), 2000);
+                        clearCart();
+                    } else if (status === 409) {
+                        toast.error("⚠️ Falha ao Realizar seu Pedido");
+                    } else {
+                        throw new Error();
+                    }
+                })
+                .catch(() => {
+                    toast.error("⚠️ Falha no Sistema! Tente novamente.");
+                });
+
+            console.log("📦 Produtos enviados no pedido:", products);
+        }
+    }, [searchParams, clearCart, navigate, cartProducts, address]);
+
+
 
     useEffect(() => {
         AOS.init({
@@ -48,7 +93,7 @@ export function Home() {
             <Section2>
 
                 <CategoryCarousel setIsBGVisible={setIsBGVisible} setActiveCategory={setActiveCategory}
-                 />
+                />
 
                 <ContainerSec2>
                     <Span>
