@@ -67,6 +67,15 @@ export function CartResume({ visivelButton }) {
         }
     };
 
+    function NextPage() {
+        if (cartProducts.length === 0) {
+            toast.error('O carrinho está Vazio!');
+            return;
+        } else {
+            navigate('/order')
+        }
+    }
+
     return (
         <ContentResume>
             <Container>
@@ -83,7 +92,7 @@ export function CartResume({ visivelButton }) {
                 </div>
                 <BackCart to='/carrinho' style={{ display: visivelButton ? 'none' : 'flex' }}>Rever meu Pedido</BackCart>
             </Container>
-            <GotoOrder onClick={() => navigate('/order')} style={{ display: visivelButton ? 'flex' : 'none' }}>Continuar</GotoOrder>
+            <GotoOrder onClick={NextPage} style={{ display: visivelButton ? 'flex' : 'none' }}>Continuar</GotoOrder>
             <Button onClick={() => submitOrder("normal")} style={{ display: visivelButton ? 'none' : 'flex' }}>Finalizar Pedido</Button>
             <PixOption onClick={() => submitOrder("pix")} style={{ display: visivelButton ? 'none' : 'flex' }}> <FaPix className='PixIxon' /> Pagar com Pix</PixOption>
 

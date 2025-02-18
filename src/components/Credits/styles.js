@@ -12,7 +12,7 @@ export const General = styled.div`
 
     p {
         color: white;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 14px;
         text-align: center;
 

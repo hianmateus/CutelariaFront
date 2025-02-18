@@ -140,7 +140,7 @@ export const DivCTRight = styled.div`
             font-size: 45px;
         }
 
-        button{
+        a{
             cursor: pointer;
             border: none;
             height: 45px;
@@ -150,6 +150,9 @@ export const DivCTRight = styled.div`
             font-weight: bold;
             font-size: 16px;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &:hover{
                 transform: translateY(-5px);

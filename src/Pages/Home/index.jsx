@@ -125,7 +125,7 @@ export function Home() {
                                 técnica especializada com a venda de equipamentos e acessórios de alta performance para banho e tosa.</p>
 
                             <div data-aos="flip-down" data-aos-delay="300">
-                                <FaWhatsapp className="whatsapp-icon" /> <button>Entre em Contato</button>
+                                <FaWhatsapp className="whatsapp-icon" /> <a href="https://wa.me/558396166367" target="black">Entre em Contato</a>
                             </div>
                         </DivCTRight>
                     </Span>
@@ -186,11 +186,11 @@ export function Home() {
 
                             <CardBackgrund>
                                 <ul>
-                                    <Link to='/laminas'>• Laminas e Acessórios</Link>
-                                    <Link to='/tesouras'>• Tesouras e Acessórios</Link>
-                                    <Link to='/maquinas'>• Maquinas de Tosa</Link>
-                                    <Link to='/equipamentos'>• Secadoras e Equipamentos</Link>
-                                    <Link >• Pentes e Rasqueadeiras</Link>
+                                    <Link to='/laminas' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>• Laminas e Acessórios</Link>
+                                    <Link to='/tesouras' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>• Tesouras e Acessórios</Link>
+                                    <Link to='/maquinas' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>• Maquinas de Tosa</Link>
+                                    <Link to='/equipamentos' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>• Secadoras e Equipamentos</Link>
+                                    <Link to='/pentes' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>• Pentes e Rasqueadeiras</Link>
 
                                 </ul>
                             </CardBackgrund>

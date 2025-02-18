@@ -14,7 +14,7 @@ import { useUser } from '../../hooks/UserContext'
 export function Header() {
     const { cartProducts } = useCart()
 
-    const {logout, userInfo} = useUser()
+    const { logout, userInfo } = useUser()
     function logoutUser() {
         logout()
         navigate('/login')
@@ -28,6 +28,7 @@ export function Header() {
     const navigate = useNavigate()
     const BackHome = () => {
         navigate('/');
+        window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
     const ProductQuantity = cartProducts.reduce((acc, current) => {
@@ -37,23 +38,26 @@ export function Header() {
 
     return (
         <Container data-aos="fade-down">
-            <Banner src={LogoImage} data-aos="flip-down" data-aos-delay="300" onClick={BackHome}/>
+            <Banner src={LogoImage} data-aos="flip-down" data-aos-delay="300"
+                onClick={
+                    BackHome
+                    } />
 
             <ContainerCenter>
                 <div data-aos="fade-right" data-aos-delay="400">
-                    <Link to='/laminas'>LÂMINAS</Link>
+                    <Link to='/laminas' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>LÂMINAS</Link>
                 </div>
                 <div data-aos="fade-right" data-aos-delay="500">
-                    <Link to='/tesouras'>TESOURAS</Link>
+                    <Link to='/tesouras' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>TESOURAS</Link>
                 </div>
                 <div data-aos="fade-right" data-aos-delay="600">
-                    <Link to='/maquinas'>MÁQUINAS</Link>
+                    <Link to='/maquinas' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>MÁQUINAS</Link>
                 </div>
                 <div data-aos="fade-right" data-aos-delay="700">
-                    <Link to='/equipamentos'>EQUIPAMENTOS</Link>
+                    <Link to='/equipamentos' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>EQUIPAMENTOS</Link>
                 </div>
                 <div data-aos="fade-right" data-aos-delay="800">
-                    <Link to='/pentes'>PENTES</Link>
+                    <Link to='/pentes' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>PENTES</Link>
                 </div>
             </ContainerCenter>
 
@@ -72,10 +76,10 @@ export function Header() {
                 <Pedidos data-aos="flip-left" data-aos-delay="1100">
                     <div>
                         <CPedidos>{ProductQuantity}</CPedidos>
-                        <img src={OrderICon} alt="icon-Orders-png"/>
+                        <img src={OrderICon} alt="icon-Orders-png" />
                     </div>
 
-                    <Count to='/carrinho'>Carrinho</Count>
+                    <Count to='/carrinho' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Carrinho</Count>
                 </Pedidos>
 
             </ContainerRight>
