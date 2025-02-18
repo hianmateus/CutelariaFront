@@ -1,10 +1,10 @@
 
 import { General } from "./styles"
 
-export function Tesouras() {
+export function NewProduct() {
     return (
         <General>
-            <h1>Tesouras</h1>
+            <h1>NewProduct</h1>
         </General>
     )
 }

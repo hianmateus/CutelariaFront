@@ -8,3 +8,8 @@ export * from './Equipamentos'
 export * from './Pentes'
 export * from './Register'
 export * from './Order'
+export * from './Admin/Orders'
+export * from './Admin/Products'
+export * from './Admin/NewProduct'
+export * from './Admin/EditProduct'
+

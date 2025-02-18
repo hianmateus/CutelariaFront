@@ -49,7 +49,12 @@ export function Login() {
                     success: {
                         render() {
                             setTimeout(() => {
-                                navigate('/')
+                                if (userData?.admin) {
+                                    navigate('/admin/pedidos')
+                                } else {
+                                    navigate('/')
+                                }
+
                             }, 1500);
                             return 'Seja Bem vindo(a)'
                         },

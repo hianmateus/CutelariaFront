@@ -3,7 +3,7 @@ import {
     DivCTRight, DivTitle, TitleSec3, Divpart1, Divpart2, CardsSec3, Card, Link, PgfSec3, CardBackgrund,
     DivSpan, DivMap
 } from "./styles";
-import { Header, Credits, CategoryCarousel, Menu } from "../../components";
+import { CategoryCarousel, Menu } from "../../components";
 
 import { FaWhatsapp } from 'react-icons/fa';
 import { MdOutlineAddShoppingCart } from "react-icons/md";
@@ -75,7 +75,6 @@ export function Home() {
 
     return (
         <General>
-            <Header />
 
             <Menu isBGVisible={isBGVisible}
                 setIsBGVisible={setIsBGVisible}
@@ -238,7 +237,6 @@ export function Home() {
             </Section3>
 
 
-            <Credits />
         </General>
     )
 }
