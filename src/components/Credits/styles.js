@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const General = styled.div`
     width: 100%;
     height: 52px;
-    background-color: #1e1e1e;
+    background-color: #121212;
     position: absolute;
     bottom: 0;
     display: flex;

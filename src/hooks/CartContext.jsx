@@ -16,6 +16,21 @@ export const CartProvider = ({ children }) => {
         return storedCart ? JSON.parse(storedCart) : [];
     });
 
+    const [totalValues, setTotalValues] = useState({ weight: 0, price: 0 });
+
+    useEffect(() => {
+        const total = cartProducts.reduce(
+            (acc, product) => {
+                const pesoNumerico = product.info3 ? Number(product.info3.replace(',', '.')) : 0;
+                acc.peso += pesoNumerico * product.quantity;
+                acc.price += product.price * product.quantity;
+                return acc;
+            },
+            { peso: 0, price: 0 }
+        );
+        setTotalValues(total);
+    }, [cartProducts]);
+
     const setAddress = (newAddress) => {
         setAddressState(newAddress);
         localStorage.setItem("address", JSON.stringify(newAddress)); // Salva no localStorage
@@ -69,7 +84,7 @@ export const CartProvider = ({ children }) => {
 
     const increaseProduct = (productId) => {
         setCartProducts((prevCart) => {
-            const updatedCart = prevCart.map(prd => 
+            const updatedCart = prevCart.map(prd =>
                 prd.id === productId ? { ...prd, quantity: prd.quantity + 1 } : prd
             );
             upDateLocalStorage(updatedCart);
@@ -96,7 +111,7 @@ export const CartProvider = ({ children }) => {
 
     useEffect(() => {
         const clientCardData = localStorage.getItem('cutelaria:cartInfo');
-        if(clientCardData) {
+        if (clientCardData) {
             setCartProducts(JSON.parse(clientCardData));
         }
     }, []);
@@ -106,7 +121,8 @@ export const CartProvider = ({ children }) => {
             cartProducts, finalPrice, putProductInCart,
             clearCart, decreaseProduct,
             increaseProduct, deleteProduct,
-            selectProduct, address, setAddress // <- Adicionando endereço ao contexto
+            selectProduct, address, setAddress,
+            totalValues, setTotalValues
         }}>
             {children}
         </CartContext.Provider>
