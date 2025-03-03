@@ -28,7 +28,6 @@ export function Orders() {
       setOrders(data)
       setFilteredOrders(data)
 
-      console.log(data)
     }
 
     loadOrders()
@@ -41,6 +40,7 @@ export function Orders() {
       orderId: order._id,
       date: order.createdAt,
       status: order.status,
+      address: order.address,
       products: order.products.map(product => ({
         ...product,
         quantity: Number(product.quantity), // Converte para número

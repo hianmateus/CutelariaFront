@@ -17,7 +17,7 @@ export function CardProduct({ product, setSelectMenu, setSelectedProduct }) {
             <DivSpan>
                 <PdName>{product.name}</PdName>
                 <PdPrice>{product.currencyValue}</PdPrice>
-                <Pdinfo>{formatPrice(product.price - 25)} à vista no PIX</Pdinfo>
+                <Pdinfo>{formatPrice(product.price * 0.9)} via PIX</Pdinfo>
 
                 <PdButton onClick={(event) => { event.stopPropagation(); putProductInCart(product) }}> <MdOutlineShoppingBag className="IconShop" /> EU QUERO!</PdButton>
             </DivSpan>

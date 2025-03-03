@@ -55,7 +55,7 @@ export function MenuSelect({ selectMenu, setSelectMenu, selectedProduct }) {
 
                     <PriceProduct>
                         <Price>{product.currencyValue}</Price>
-                        <Pricepix>{formatPrice(product.price - 25)} à vista no PIX</Pricepix>
+                        <Pricepix>{formatPrice(product.price * 0.9)} via PIX</Pricepix>
 
                         <TextPix>Outras formas de pagamentos podem ser feitas na finalização da Compra</TextPix>
 

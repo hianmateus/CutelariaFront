@@ -27,18 +27,18 @@ export function Row({ row, setOrders, orders }) {
       setLoading(true)
       await api.put(`orders/${id}`, { status })
 
-      const newOrders = orders.map( order => order._id === id ? { ...order, status} : order,)
+      const newOrders = orders.map(order => order._id === id ? { ...order, status } : order,)
 
       setOrders(newOrders)
 
-    } catch(err){
+    } catch (err) {
       console.error(err)
     }
-    finally{
+    finally {
       setLoading(false)
     }
 
-    }
+  }
 
   return (
     <>
@@ -52,8 +52,8 @@ export function Row({ row, setOrders, orders }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {row.orderId}
+        <TableCell component="th" scope="row" sx={{ fontWeight: 'bold' }}>
+          {row.address.city}
         </TableCell>
         <TableCell>{row.name}</TableCell>
         <TableCell>{formatDate(row.date)}</TableCell>
@@ -72,22 +72,22 @@ export function Row({ row, setOrders, orders }) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
+              <Typography variant="h6" gutterBottom component="div" sx={{ fontWeight: 'bold' }}>
                 Pedido
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Quantidade</TableCell>
-                    <TableCell>Produto</TableCell>
-                    <TableCell>Imagem do Produto</TableCell>
+                    <TableCell sx={{ fontWeight: '600' }}>Quantidade</TableCell>
+                    <TableCell sx={{ fontWeight: '600' }}>Produto</TableCell>
+                    <TableCell sx={{ fontWeight: '600' }}>Imagem do Produto</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row.products.map((product) => (
                     <TableRow key={product.id}>
-                      <TableCell component="th" scope="row">
-                        {product.quantity}
+                      <TableCell component="th" scope="row" sx={{ fontSize: '18px' , fontWeight: 'bold' }}>  
+                        {product.quantity}x
                       </TableCell>
                       <TableCell>{product.name}</TableCell>
                       <TableCell>
@@ -97,6 +97,13 @@ export function Row({ row, setOrders, orders }) {
                   ))}
                 </TableBody>
               </Table>
+
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2, p: 1, bgcolor: '#f5f5f5', borderRadius: 1 }}>
+                <Typography variant="body2"><strong>Cep:</strong> {row.address.cep}</Typography>
+                <Typography variant="body2"><strong>Bairro:</strong> {row.address.neighborhood}</Typography>
+                <Typography variant="body2"><strong>Rua:</strong> {row.address.street}</Typography>
+                <Typography variant="body2"><strong>Complemento:</strong> {row.address.complemento}</Typography>
+              </Box>
             </Box>
           </Collapse>
         </TableCell>
@@ -112,6 +119,14 @@ Row.propTypes = {
     orderId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    address: PropTypes.shape({ // ✅ Adicionando a estrutura de address
+      cep: PropTypes.string,
+      street: PropTypes.string,
+      neighborhood: PropTypes.string,
+      city: PropTypes.string.isRequired, // ✅ Agora o city está validado
+      complemento: PropTypes.string.isRequired, // ✅ Agora o city está validado
+      state: PropTypes.string,
+    }).isRequired,
     products: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,

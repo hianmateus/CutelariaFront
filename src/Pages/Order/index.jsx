@@ -11,83 +11,105 @@ export function Order() {
     const [visivelInfo, setVisivelInfo] = useState(true);
     const [deliveryTax, setDeliveryTax] = useState(0);
 
-    // Função para obter coordenadas do CEP usando OpenStreetMap (Nominatim)
-    const getCoordinates = async (cep) => {
-        try {
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${cep}, Brazil`);
-            const data = await response.json();
+// Função para buscar latitude e longitude de um CEP
+const getCoordinates = async (cep) => {
+    try {
+        cep = cep.replace(/\D/g, ''); // Remove espaços e caracteres não numéricos
 
-            if (data.length > 0) {
-                return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
-            }
-            return null;
-        } catch (error) {
-            console.error("Erro ao obter coordenadas:", error);
-            return null;
-        }
-    };
-
-    // Função para calcular a distância entre dois pontos (fórmula de Haversine)
-    const calculateDistance = (coord1, coord2) => {
-        const toRad = (value) => (value * Math.PI) / 180;
-        
-        const R = 6371; // Raio da Terra em km
-        const dLat = toRad(coord2.lat - coord1.lat);
-        const dLon = toRad(coord2.lon - coord1.lon);
-        
-        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                  Math.cos(toRad(coord1.lat)) * Math.cos(toRad(coord2.lat)) *
-                  Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        
-        return R * c; // Retorna distância em km
-    };
-
-    // Função para calcular o frete com base na distância e peso total dos produtos
-    const calculateShipping = async (cepDestino) => {
-        const cepOrigem = "58071-120"; // CEP fixo de origem
-        const coordOrigem = await getCoordinates(cepOrigem);
-        const coordDestino = await getCoordinates(cepDestino);
-
-        if (!coordOrigem || !coordDestino) {
-            console.error("Não foi possível obter as coordenadas dos CEPs.");
-            return;
+        if (cep.length !== 8) {
+            throw new Error(`CEP inválido: ${cep}`);
         }
 
-        const distance = calculateDistance(coordOrigem, coordDestino);
+        // Buscar cidade e estado do CEP via ViaCEP
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        if (!response.ok) throw new Error("Erro na requisição ao ViaCEP");
 
-        // Definição do valor do frete baseado na distância e peso dos produtos
-        let shippingCost = 10; // Valor base do frete
-        if (distance > 50) shippingCost += 5;
-        if (distance > 100) shippingCost += 10;
-        if (totalValues.peso > 5) shippingCost += 8; // Se o peso for maior que 5kg, adiciona mais taxa
-        if (totalValues.peso > 10) shippingCost += 15; // Se for maior que 10kg, adiciona mais ainda
+        const data = await response.json();
+        if (data.erro) throw new Error("CEP não encontrado");
 
-        console.log(`Distância: ${distance.toFixed(2)} km`);
-        console.log(`Peso Total: ${totalValues.peso.toFixed(2)} kg`);
-        console.log(`Preço Total: R$ ${totalValues.price.toFixed(2)}`);
-        console.log(`Valor do Frete: R$ ${shippingCost.toFixed(2)}`);
+        // Buscar coordenadas da cidade via OpenStreetMap
+        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?city=${data.localidade}&state=${data.uf}&country=Brasil&format=json`);
+        if (!geoResponse.ok) throw new Error("Erro ao buscar coordenadas");
 
-        setDeliveryTax(shippingCost);
-    };
+        const geoData = await geoResponse.json();
+        if (geoData.length === 0) throw new Error("Coordenadas não encontradas");
 
-    // Ao enviar os dados, salvar o endereço e calcular o frete
-    const onSubmit = async (data) => {
-        setAddress({ 
-            cep: data.cep,  
-            state: data.state,
-            city: data.city,
-            neighborhood: data.neighborhood,
-            street: data.street,
-            complemento: data.complemento
-        });
+        return {
+            latitude: parseFloat(geoData[0].lat),
+            longitude: parseFloat(geoData[0].lon)
+        };
+    } catch (error) {
+        console.error("Erro ao buscar coordenadas:", error.message);
+        return null;
+    }
+};
 
-        console.log("Calculando frete...");
-        await calculateShipping(data.cep);
-        
-        setVisivelInfo(false);
-    };
+// Função para calcular a distância entre dois pontos (Fórmula de Haversine)
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371; // Raio da Terra em km
+    const toRad = (value) => (value * Math.PI) / 180;
+
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+};
+
+// Função para calcular o frete com base na distância e no peso dos produtos
+const calculateFreight = (distance, weight) => {
+    const baseRate = 10; // Taxa base de frete
+    const distanceRate = 0.03; // Custo por km
+    const weightRate = 2; // Custo por kg
+
+    return baseRate + (distance * distanceRate) + (weight * weightRate);
+};
+
+// Modificação na função onSubmit para calcular a distância e o frete
+const onSubmit = async (data) => {
+    setAddress({ 
+        cep: data.cep,  
+        state: data.state,
+        city: data.city,
+        neighborhood: data.neighborhood,
+        street: data.street,
+        complemento: data.complemento
+    });
+
+    const cepOrigem = "58071-120"; // CEP fixo de origem
+    const cepDestino = data.cep; // CEP informado pelo usuário
+
+    console.log(`Calculando distância entre ${cepOrigem} e ${cepDestino}...`);
+
+    const origem = await getCoordinates(cepOrigem);
+    const destino = await getCoordinates(cepDestino);
+
+    if (origem && destino) {
+        const distance = calculateDistance(origem.latitude, origem.longitude, destino.latitude, destino.longitude);
+        console.log(`Distância entre ${cepOrigem} e ${cepDestino}: ${distance.toFixed(2)} km`);
+
+        // Pegando o peso dos produtos do totalValues
+        const weight = totalValues.weight || 0; // Certifique-se de que essa variável está acessível e armazenando o peso total
+
+        // Calculando o frete
+        const freightCost = calculateFreight(distance, weight);
+        console.log(`Frete calculado: R$ ${freightCost.toFixed(2)}`);
+
+        // Atualizando o estado do frete
+        setDeliveryTax(freightCost);
+    } else {
+        console.log("Não foi possível calcular a distância. Verifique se o CEP está correto.");
+    }
+
+    setVisivelInfo(false);
+};
+
+
 
     // Alterar as informações do endereço
     const ChangeInfo = () => {

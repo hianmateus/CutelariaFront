@@ -18,5 +18,9 @@ export const Container = styled.div`
         padding: 40px 20px;
         max-width: 1200px;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 `

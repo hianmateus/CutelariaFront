@@ -3,7 +3,6 @@ import Select from 'react-select'
 
 export const ProductImage = styled.img`
     width: 100px;
-    padding: 12px;
     border-radius: 16px;
 `
 
