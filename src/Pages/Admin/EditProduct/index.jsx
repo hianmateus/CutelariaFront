@@ -26,7 +26,7 @@ const schema = yup
 import {
     General, Form, TopForm, InputGroup,
     Label, Input, InputUpload, Select, SubmitButton,
-    ErrorMessage, ChekBoxDiv
+    ErrorMessage, ChekBoxDiv, InputProducts
 } from "./styles"
 import { toast } from "react-toastify"
 
@@ -86,6 +86,8 @@ export function EditProduct() {
 
     return (
         <General>
+            <InputProducts type="text" />
+
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <TopForm>
                     <InputGroup>

@@ -29,3 +29,15 @@ export const EditButton = styled.button`
         }
     }
 `
+
+export const InputProducts = styled.input`
+    width: 280px;
+    height: 40px;
+    background-color: white;
+    border-radius: 12px;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding-left: 8px;
+    font-size: 16px;
+`
