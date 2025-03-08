@@ -4,12 +4,14 @@ import { api } from '../../services/api'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import { Container, Title, ContainerItens, P1, ClickDiv } from './styles'
+import { useCart } from "../../hooks/CartContext";
 
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 // eslint-disable-next-line react/prop-types
-export function CategoryCarousel({ setActiveCategory, setIsBGVisible }) {
+export function CategoryCarousel({ setIsBGVisible }) {
+    const { setActiveCategory } = useCart();
     const [categorias, setCategories] = useState([])
 
     useEffect(() => {

@@ -11,7 +11,7 @@ export const General = styled.div`
 export const Section1 = styled.section`
     background: url('${BackGround1}');
     background-size: cover;
-    height: 85vh;
+    height: 100vh;
     width: 100%;
     position: relative;
     display: flex;
@@ -411,7 +411,7 @@ export const Section7 = styled.section`
                 display: flex;
                 flex-direction: column;
                 .TileLC{
-                    color: #fecb00;
+                    color: #24ff00;
                     font-size: 16px;
                     font-weight: 600;
                     width: 100%;

@@ -15,18 +15,67 @@ export const Container = styled.div`
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     transition: ease 1s;
 
+    .ButtonMenu{
+        display: none;
+        cursor: pointer;
+        
+        svg{
+            color: white;
+            font-size: 45px;
+            text-align: center;
+        }
+
+        @media (max-width: 490px) {
+        display: flex;
+        }
+    }
+
     @media (max-width: 980px) {
         justify-content: space-around;
+        flex-direction: row-reverse;
         padding: 0;
   }
+`
+
+export const MobileContainer = styled.div`
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: space-between;
+    width: 73%;
+
+    @media (max-width: 490px) {
+        display: none;
+    }
+`
+export const MobileContainer2 = styled.div`
+    display: none;
+    gap: 50px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 35px #000000db;
+    z-index: 5;
+    position: fixed;
+    top: 64px;
+    flex-direction: column;
+    background-color: #252525;
+    width: 190px;
+    padding: 20px;
+    border-radius: 8px;
+    left: 30px;
+    transition: all 0.5s;
+
+    @media (max-width: 490px) {
+        display: flex;
+    }
 `
 
 export const ContainerCenter = styled.div`
     display: flex;
     gap: 40px;
 
-    @media (max-width: 980px) {
-        display: none;
+    @media (max-width: 490px) {
+    flex-direction: column;
   }
 `
 
@@ -64,6 +113,10 @@ export const ContainerRight = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
+
+    @media (max-width: 490px) {
+    flex-direction: column;
+  }
 `
 
 export const Banner = styled.img`
@@ -71,7 +124,7 @@ export const Banner = styled.img`
     cursor: pointer;
 
     @media (max-width: 980px) {
-        width: 100px;
+        width: 150px;
   }
 `
 

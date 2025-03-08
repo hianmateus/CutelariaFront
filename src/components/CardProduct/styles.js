@@ -15,6 +15,11 @@ export const Container = styled.div`
     &:hover{
         transform: translateY(-8px);
     }
+
+    @media (max-width: 450px) {
+        width: 150px;
+        justify-content: center;
+    }
 `
 export const DivSpan = styled.div`
     display: flex;

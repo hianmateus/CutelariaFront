@@ -1,9 +1,11 @@
 
-import { General, Section1, Span1, ButtonM,
+import {
+    General, Section1, Span1, ButtonM,
     ButtonC, Section2, DivMarks, MarkInfo,
     Section3, Section4, Section5, Section6,
     Section7, AboutBlades, TypeBlades,
-    BladesCategory, BladeType } from "./styles"
+    BladesCategory, BladeType
+} from "./styles"
 
 import MarkPropetz from '../../assets/imgs/Laminas/MarkPropetz.png'
 import MarkAndis from '../../assets/imgs/Laminas/MarkAndis.png'
@@ -20,10 +22,23 @@ import LaminaCarbono from '../../assets/imgs/Laminas/LaminadeCarbono.png'
 import LaminaCeramica from '../../assets/imgs/Laminas/LaminadeCeramica.png'
 import GoldBlade from '../../assets/imgs/Laminas/LMGold.png'
 
+import { useCart } from "../../hooks/CartContext"
+
+import { MenuProduct } from "../../components";
+import { useState } from "react"
 
 export function Laminas() {
+    const [isBGVisible, setIsBGVisible] = useState(false);
+    const { activeCategory, setActiveCategory, typeProduct, setTypeProduct } = useCart();
+
     return (
         <General>
+            <MenuProduct isBGVisible={isBGVisible}
+                setIsBGVisible={setIsBGVisible}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                typeProduct={typeProduct} />
+
             <Section1>
                 <Span1>
                     <h1>LAMINAS DE TOSA MAIS USADAS PARA RESULTADOS IMPECAVEIS</h1>
@@ -79,7 +94,7 @@ export function Laminas() {
                             <img src={LaminaAço} alt="imagem-exmeplo-lamina-de-aço" />
 
                             <p><span>Aço Inoxidável</span>
-                            , Resistente à ferrugem e facil de manter. Ideal para uso prolongado e em ambientes úmidos</p>
+                                , Resistente à ferrugem e facil de manter. Ideal para uso prolongado e em ambientes úmidos</p>
                         </div>
 
                         <div>
@@ -97,19 +112,27 @@ export function Laminas() {
                 </AboutBlades>
 
                 <BladesCategory>
-                    <BladeType>
+                    <BladeType onClick={() => {
+                        setIsBGVisible(true)
+                        setActiveCategory(1)
+                        setTypeProduct('Acabamento')
+                    }}>
                         <div className="BlackPoint"></div>
 
-                        <div>
+                        <div >
                             <img src={GoldBlade} alt="imagem-Lamina-Simbolo" />
 
                             <h3>TOSA DE ACABAMENTO</h3>
                             <p>Estas são projetadas para cortes finos e detalhados,
-                                 como contornos de rosto, patas e outras áreas delicadas</p>
+                                como contornos de rosto, patas e outras áreas delicadas</p>
                         </div>
                     </BladeType>
 
-                    <BladeType>
+                    <BladeType onClick={() => {
+                        setIsBGVisible(true)
+                        setActiveCategory(1)
+                        setTypeProduct('Desbaste')
+                    }}>
                         <div className="BlackPoint"></div>
 
                         <div>
@@ -117,11 +140,15 @@ export function Laminas() {
 
                             <h3>TOSA DE DESBASTE</h3>
                             <p>Estas são projetadas para cortes finos e detalhados,
-                                 como contornos de rosto, patas e outras áreas delicadas</p>
+                                como contornos de rosto, patas e outras áreas delicadas</p>
                         </div>
                     </BladeType>
 
-                    <BladeType>
+                    <BladeType onClick={() => {
+                        setIsBGVisible(true)
+                        setActiveCategory(1)
+                        setTypeProduct('Higiênica')
+                    }}>
                         <div className="BlackPoint"></div>
 
                         <div>
@@ -129,7 +156,7 @@ export function Laminas() {
 
                             <h3>TOSA HIGIÊNICA</h3>
                             <p>Estas são projetadas para cortes finos e detalhados,
-                                 como contornos de rosto, patas e outras áreas delicadas</p>
+                                como contornos de rosto, patas e outras áreas delicadas</p>
                         </div>
                     </BladeType>
                 </BladesCategory>

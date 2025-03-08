@@ -21,6 +21,16 @@ export const General = styled.div`
     padding: 40px 40px 25px;
     position: relative;
     justify-content: space-between;
+
+    @media (max-width: 450px) {
+        height: 90%;
+        width: 95%;
+        padding: 20px 10px;
+        overflow-y: scroll;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
 `
 
 export const ButtonClose = styled.p`
@@ -38,13 +48,18 @@ export const DivImage = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 100%;
 `
 
 export const ImageProduct = styled.img`
     border-radius: 15px;
     height: 370px;
     max-width: 100%;
+
+    @media (max-width: 450px) {
+        height: 365px;
+        max-width: 380px;
+    }
 `
 
 export const SpanProduct = styled.div`
@@ -53,6 +68,10 @@ export const SpanProduct = styled.div`
     align-items: center;
     width: 45%;
     gap: 10px;
+
+    @media (max-width: 450px) {
+        width: 100%;
+    }
 `
 
 export const ProductName = styled.h3`
@@ -134,6 +153,11 @@ export const ButtonShop = styled.button`
         font-size: 25px;
         filter: drop-shadow(0 0 5px white);
     }
+
+    @media (max-width: 450px) {
+        width: 300px;
+        height: 60px;
+    }
 `
 
 export const ButtonLink = styled.button`
@@ -155,6 +179,11 @@ export const ButtonLink = styled.button`
 
     .IconShop{
         width: 12%;
+    }
+
+    @media (max-width: 450px) {
+        width: 300px;
+        height: 60px;
     }
 `
 

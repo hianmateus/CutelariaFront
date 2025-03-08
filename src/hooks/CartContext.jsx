@@ -7,7 +7,6 @@ export const CartProvider = ({ children }) => {
     const [productSelect, setProductSelect] = useState([]);
     const [finalPrice, setFinalPrice] = useState(0);
     const [address, setAddressState] = useState(() => {
-        // Busca o endereço salvo no localStorage ao carregar a aplicação
         const savedAddress = localStorage.getItem("address");
         return savedAddress ? JSON.parse(savedAddress) : {};
     });
@@ -15,8 +14,10 @@ export const CartProvider = ({ children }) => {
         const storedCart = localStorage.getItem("cartProducts");
         return storedCart ? JSON.parse(storedCart) : [];
     });
-
     const [totalValues, setTotalValues] = useState({ weight: 0, price: 0 });
+    const [activeCategory, setActiveCategory] = useState();  // **Adicionado aqui**
+    const [typeProduct, setTypeProduct] = useState();  // **Adicionado aqui**
+
 
     useEffect(() => {
         const total = cartProducts.reduce(
@@ -33,7 +34,7 @@ export const CartProvider = ({ children }) => {
 
     const setAddress = (newAddress) => {
         setAddressState(newAddress);
-        localStorage.setItem("address", JSON.stringify(newAddress)); // Salva no localStorage
+        localStorage.setItem("address", JSON.stringify(newAddress));
     };
 
     useEffect(() => {
@@ -70,7 +71,7 @@ export const CartProvider = ({ children }) => {
 
     const clearCart = () => {
         setCartProducts([]);
-        setAddress({})
+        setAddress({});
         localStorage.removeItem("cartProducts");
         localStorage.removeItem("address");
         upDateLocalStorage([]);
@@ -122,7 +123,8 @@ export const CartProvider = ({ children }) => {
             clearCart, decreaseProduct,
             increaseProduct, deleteProduct,
             selectProduct, address, setAddress,
-            totalValues, setTotalValues
+            totalValues, setTotalValues, activeCategory, setActiveCategory, // **Adicionado aqui**
+            typeProduct, setTypeProduct
         }}>
             {children}
         </CartContext.Provider>

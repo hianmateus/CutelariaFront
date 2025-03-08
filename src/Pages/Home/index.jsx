@@ -26,8 +26,7 @@ import 'aos/dist/aos.css'
 
 export function Home() {
     const [isBGVisible, setIsBGVisible] = useState(false);
-    const [activeCategory, setActiveCategory] = useState();
-    const { clearCart, address, cartProducts } = useCart(); // Função para limpar o carrinho
+    const { activeCategory, setActiveCategory, clearCart, address, cartProducts } = useCart();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const requestSent = useRef(false); // ✅ Referência para evitar múltiplas execuções
