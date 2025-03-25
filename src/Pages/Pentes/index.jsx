@@ -7,20 +7,65 @@ import {
     DivEquip, DivIMG, DivSec3, H1Sec3, PDesc,
     PName, DescProduct, DescTitle, DivSec4,
     ProductDiv, Sec4Equipamento, TitleTop, TitlesSec4,
-    DescSec5, DivSec5, InfoContainer, InfoImage,
-    PinfoSec5, TitleSec5, TitlesSec5, Black
+    DivSec5, InfoContainer, InfoImage, 
+    PinfoSec5, Black, EquiTitle
 } from "./styles"
 
+import DogExample1 from '../../assets/imgs/Pentes/DogExample1.png'
+import DogExample2 from '../../assets/imgs/Pentes/DogExample2.png'
+import DogExample3 from '../../assets/imgs/Pentes/DogExample3.png'
+import DogExample4 from '../../assets/imgs/Pentes/DogExample4.png'
+
+import Infoimage1 from '../../assets/imgs/Pentes/Infoimage1.png'
+import Infoimage2 from '../../assets/imgs/Pentes/Infoimage2.png'
+import Infoimage3 from '../../assets/imgs/Pentes/Infoimage3.png'
+
+import Recomend1 from '../../assets/imgs/Pentes/Recomend1.png'
+import Recomend2 from '../../assets/imgs/Pentes/Recomend2.png'
+import Recomend3 from '../../assets/imgs/Pentes/Recomend3.png'
+
+import TypesInstrument1 from '../../assets/imgs/Pentes/TypesInstrument1.png'
+import TypesInstrument2 from '../../assets/imgs/Pentes/TypesInstrument2.png'
+import TypesInstrument3 from '../../assets/imgs/Pentes/TypesInstrument3.png'
+
+import { useCart } from "../../hooks/CartContext"
+import { MenuProduct } from "../../components";
+import { useEffect, useState } from "react"
+
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 export function Pentes() {
+    const [isBGVisible, setIsBGVisible] = useState(false);
+    const { activeCategory, setActiveCategory, typeProduct, setTypeProduct } = useCart();
+
+    useEffect(() => {
+        AOS.init({
+        });
+    }, [])
+
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <General>
+            <MenuProduct isBGVisible={isBGVisible}
+                setIsBGVisible={setIsBGVisible}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                typeProduct={typeProduct} />
+
             <Section1>
                 <DivSec1>
                     <H1Sec1>Ferramentas <Black>Essenciais para Higiêne</Black> e Bem-Estar</H1Sec1>
 
                     <Sec1P>Instrumentos que fazem a diferença no Bem-Estar do seu Pet</Sec1P>
 
-                    <ButtonSec1>Veja Mais Sobre</ButtonSec1>
+                    <ButtonSec1 onClick={() => scrollToSection("Pentes")}>Produtos </ButtonSec1>
                 </DivSec1>
             </Section1>
 
@@ -28,25 +73,34 @@ export function Pentes() {
                 <H1Sec2>Por Que Usar Pentes para Pet?</H1Sec2>
 
                 <DivSec2>
+
                     <InfoSec2>
+                        <img src={DogExample1} alt="imagem-exemplo" />
+
                         <TitleSec2>Higiêne Impécavel</TitleSec2>
 
                         <TextSec2>Previne emaranhados que podem causar desconforto ou irritação</TextSec2>
                     </InfoSec2>
 
                     <InfoSec2>
+                        <img src={DogExample2} alt="imagem-exemplo" />
+
                         <TitleSec2>Adeus aos Nós</TitleSec2>
 
                         <TextSec2>Remove sujeira, pelos mortos e possíveis parasitas com facilidade</TextSec2>
                     </InfoSec2>
 
                     <InfoSec2>
+                        <img src={DogExample3} alt="imagem-exemplo" />
+
                         <TitleSec2>Pelagem Radiante</TitleSec2>
 
                         <TextSec2>Distribui os óleos naturais, deixando o pelo mais brilhante e saudável</TextSec2>
                     </InfoSec2>
 
                     <InfoSec2>
+                        <img src={DogExample4} alt="imagem-exemplo" />
+
                         <TitleSec2>Cuidados com a Pele</TitleSec2>
 
                         <TextSec2>Facilita a identificação de lesões, ou parasitas</TextSec2>
@@ -61,29 +115,35 @@ export function Pentes() {
                 <DivSec3>
                     <DivEquip>
                         <DivIMG>
-                            <img src="" alt="imagem-exemplo-produto" />
+                            <img src={TypesInstrument1} alt="imagem-exemplo-produto" />
                         </DivIMG>
 
-                        <PName>Dentes Giratórios</PName>
-                        <PDesc>Dentes giratórios que reduzem a tração no pelo, tornando a escovação mais confortável</PDesc>
+                        <div>
+                            <PName>Dentes Largos, Finos ou Giratórios</PName>
+                            <PDesc>Para pets de pelo médio a longo, especialmente para desembaraçar e alinhar os fios.</PDesc>
+                        </div>
                     </DivEquip>
 
                     <DivEquip>
                         <DivIMG>
-                            <img src="" alt="imagem-exemplo-produto" />
+                            <img src={TypesInstrument2} alt="imagem-exemplo-produto" />
                         </DivIMG>
 
-                        <PName>Dentes Giratórios</PName>
-                        <PDesc>Dentes giratórios que reduzem a tração no pelo, tornando a escovação mais confortável</PDesc>
+                        <div>
+                            <PName>Cerdas Metálicas ou Flexíveis</PName>
+                            <PDesc>Cães e gatos de pelo médio a longo, com subpelo ou tendência a nós.</PDesc>
+                        </div>
                     </DivEquip>
 
                     <DivEquip>
                         <DivIMG>
-                            <img src="" alt="imagem-exemplo-produto" />
+                            <img src={TypesInstrument3} alt="imagem-exemplo-produto" />
                         </DivIMG>
 
-                        <PName>Dentes Giratórios</PName>
-                        <PDesc>Dentes giratórios que reduzem a tração no pelo, tornando a escovação mais confortável</PDesc>
+                        <div>
+                            <PName>Cerdas Macías ou de Borracha</PName>
+                            <PDesc>Ideal para pets de pelo curto ou como toque final na escovação.</PDesc>
+                        </div>
                     </DivEquip>
                 </DivSec3>
 
@@ -91,7 +151,7 @@ export function Pentes() {
                     Eles vêmem diferentes tipos, tamanhos e matériais, sendo cada um ideal para funções específicas e tipos de pelagem</DescInfoSec3>
             </Section3>
 
-            <Section4>
+            <Section4 id="Pentes">
                 <TitlesSec4>
                     <TitleTop>Dentes finos ou Largos?</TitleTop>
                     <DescTitle>Temos o Instrumento Certo para Cada Pelagem</DescTitle>
@@ -99,49 +159,59 @@ export function Pentes() {
 
                 <DivSec4>
                     <Sec4Equipamento>
-                        <ProductDiv>
-                            <img src="" alt="" />
+                        <ProductDiv onClick={() => {
+                            setIsBGVisible(true)
+                            setActiveCategory(5)
+                            setTypeProduct('Pente')
+                        }}>
+                            <img src={Infoimage1} alt="Info-imagem-exemplo" />
                         </ProductDiv>
 
-                        <DescProduct></DescProduct>
+                        <EquiTitle>PENTES</EquiTitle>
+                        <DescProduct>São acessórios com dentes finos ou largos, usados para desembaraçar e alinhar os pelos</DescProduct>
                     </Sec4Equipamento>
 
                     <Sec4Equipamento>
-                        <ProductDiv>
-                            <img src="" alt="" />
+                        <ProductDiv onClick={() => {
+                            setIsBGVisible(true)
+                            setActiveCategory(5)
+                            setTypeProduct('Rasqueadeira')
+                        }}>
+                            <img src={Infoimage2} alt="Info-imagem-exemplo" />
                         </ProductDiv>
 
-                        <DescProduct></DescProduct>
+                        <EquiTitle>RASQUEADEIRAS</EquiTitle>
+                        <DescProduct>Possuem cerdas metálicas finas e levemente curvadas para remover subpelo soltos e nós superficiais</DescProduct>
                     </Sec4Equipamento>
 
                     <Sec4Equipamento>
-                        <ProductDiv>
-                            <img src="" alt="" />
+                        <ProductDiv onClick={() => {
+                            setIsBGVisible(true)
+                            setActiveCategory(5)
+                            setTypeProduct('Escova')
+                        }}>
+                            <img src={Infoimage3} alt="Info-imagem-exemplo" />
                         </ProductDiv>
 
-                        <DescProduct></DescProduct>
+                        <EquiTitle>ESCOVAS</EquiTitle>
+                        <DescProduct>Escovas com cerdas macias, de borracha ou metálicas para finalizar a escovação e dar brilho ao pelo</DescProduct>
                     </Sec4Equipamento>
                 </DivSec4>
             </Section4>
 
             <Section5>
-                <TitlesSec5>
-                    <TitleSec5>Cada pelagem é única</TitleSec5>
-                    <DescSec5>Assim como o pente que ela precisa</DescSec5>
-                </TitlesSec5>
-
                 <DivSec5>
                     <InfoContainer>
                         <InfoImage>
-                            <img src="" alt="Exemplo-Cuidado-Imagem" />
+                            <img src={Recomend1} alt="Exemplo-Cuidado-Imagem" />
                         </InfoImage>
 
-                        <PinfoSec5>ESCOLHA UM PENTE COMPATÍVEL COM A TEXTURA E O COMPRIMENTO DO PELO DO PET</PinfoSec5>
+                        <PinfoSec5>ESCOLHA UM PENTE QUE MELHOR SE ADAPTE AO SEU DIA DIA</PinfoSec5>
                     </InfoContainer>
 
                     <InfoContainer>
                         <InfoImage>
-                            <img src="" alt="Exemplo-Cuidado-Imagem" />
+                            <img src={Recomend2} alt="Exemplo-Cuidado-Imagem" />
                         </InfoImage>
 
                         <PinfoSec5>DENTES FINOS SÃO MELHORES PARA DETALHES, ENQUANTO OS LARGOS COBREM ÁREAS MAIORES</PinfoSec5>
@@ -149,7 +219,7 @@ export function Pentes() {
 
                     <InfoContainer>
                         <InfoImage>
-                            <img src="" alt="Exemplo-Cuidado-Imagem" />
+                            <img src={Recomend3} alt="Exemplo-Cuidado-Imagem" />
                         </InfoImage>
 
                         <PinfoSec5>PREFIRA MATÉRIAIS DURÁVEIS E SEGUROS, COMO AÇO INOXIDÁVEL PARA OS DENTES</PinfoSec5>

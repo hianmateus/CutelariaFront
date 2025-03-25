@@ -13,10 +13,15 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
 export function CartResume({ visivelButton, address, deliveryTax }) {
     useEffect(() => {
-        initMercadoPago('APP_USR-3c5a09a1-faf8-483b-be85-bbd552a550ea', { locale: 'pt-BR' });
+        const publicKey = import.meta.env.VITE_MP_PUBLIC_KEY;
+    if (publicKey) {
+        initMercadoPago(publicKey, { locale: 'pt-BR' });
+    } else {
+        console.error("Chave pública do Mercado Pago não encontrada!");
+    }
     }, []);
 
-    const { cartProducts, finalPrice, totalValues } = useCart();
+    const { cartProducts, finalPrice } = useCart();
     const [preferenceId, setPreferenceId] = useState(null);
     const navigate = useNavigate();
 
@@ -62,7 +67,6 @@ export function CartResume({ visivelButton, address, deliveryTax }) {
             return;
         } else {
 
-            console.log(totalValues);
             navigate('/order');
         }
     }

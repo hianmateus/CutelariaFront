@@ -12,6 +12,7 @@ export const Container = styled.nav`
     img {
         width: 60%;
         margin: 40px 0;
+        cursor: pointer;
     }
 `
 

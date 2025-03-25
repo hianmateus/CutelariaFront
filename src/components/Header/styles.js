@@ -110,7 +110,7 @@ export const Link = styled(ReactLink)`
 `
 
 export const ContainerRight = styled.div`
-    display: flex;
+    display: none;
     align-items: center;
     gap: 20px;
 

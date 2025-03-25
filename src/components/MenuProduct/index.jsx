@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Main, General, CategoryMenu, ButtonClose, ProductsContainer, AcessoryContainer, CategoryButton } from './styles'
+import { Main, General, CategoryMenu, ButtonClose, ProductsContainer, AcessoryContainer, CategoryName } from './styles'
 import { api } from '../../services/api'
 import { CardProduct } from '../CardProduct'
 import { formatPrice } from '../../utils/formartPrice'
 import { MenuSelect } from '../MenuSelect'
 
 // eslint-disable-next-line react/prop-types
-export function MenuProduct({ activeCategory, isBGVisible, setIsBGVisible, }) {
+export function MenuProduct({ activeCategory, isBGVisible, setIsBGVisible, typeProduct }) {
 
     const [mapedProducts, MapedProducts] = useState([])
     const [products, setProducts] = useState([])
@@ -56,16 +56,11 @@ export function MenuProduct({ activeCategory, isBGVisible, setIsBGVisible, }) {
                 <ButtonClose onClick={() => setIsBGVisible(false)}>X</ButtonClose>
 
                 <CategoryMenu>
-                    <CategoryButton>Acabamento</CategoryButton>
-
-                    <CategoryButton>Desbaste</CategoryButton>
-
-                    <CategoryButton>Higiênica</CategoryButton>
-
+                    <CategoryName>{typeProduct}</CategoryName>
                 </CategoryMenu>
 
                 <ProductsContainer>
-                    {mapedProducts.filter(product => product.info2 === "Equipamento")
+                    {mapedProducts.filter(product => product.info2 === "Equipamento").filter(product => product.type === typeProduct)
                         .map(product => (
                             <CardProduct key={product.id} product={product} setSelectedProduct={setSelectedProduct}
                                 setSelectMenu={setSelectMenu} selectMenu={selectMenu}/>

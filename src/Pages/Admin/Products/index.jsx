@@ -32,11 +32,6 @@ export function Products() {
     loadProducts()
   }, [])
 
-  useEffect(() => {
-    console.log(`Total de produtos: ${products.length}`);
-    products.forEach((product, index) => console.log(`${index + 1}. ${product.name}`));
-  }, [products]);
-
   function isOffer(offer) {
     if (offer) {
       return <CheckCircle color="green" size="25" />
@@ -48,7 +43,6 @@ export function Products() {
   function editProduct(product) {
     navigate('/admin/editar-Produto', { state: { product } })
 
-    console.log(product.name)
   }
 
   // Função para atualizar o estado da pesquisa
@@ -60,6 +54,7 @@ export function Products() {
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
 
   return (
     <General>
@@ -75,8 +70,10 @@ export function Products() {
           <TableHead>
             <TableRow>
               <TableCell>Nome</TableCell>
+              <TableCell align="center">Estoque</TableCell>
               <TableCell align="center">Preço</TableCell>
               <TableCell align="center">Produto em Oferta</TableCell>
+              <TableCell align="center">Categoria</TableCell>
               <TableCell align="center">Imagem do Produto</TableCell>
               <TableCell align="center">Editar Produto</TableCell>
             </TableRow>
@@ -90,8 +87,12 @@ export function Products() {
                 <TableCell component="th" scope="row">
                   {product.name}
                 </TableCell>
+                <TableCell align="center">{product.stock}</TableCell>
                 <TableCell align="center">{formatPrice(product.price)}</TableCell>
                 <TableCell align="center">{isOffer(product.offer)}</TableCell>
+                <TableCell component="th" scope="row" align="center">
+                  {product.type}
+                </TableCell>
                 <TableCell align="center"><ProductImage src={product.url} /></TableCell>
                 <TableCell align="center"> <EditButton onClick={() => editProduct(product)}> <Pencil style={{ display: 'flex' }} /> </EditButton> </TableCell>
               </TableRow>

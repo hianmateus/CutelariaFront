@@ -6,7 +6,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 8px;
-    width: 170px;
+    width: 175px;
     border-radius: 12px;
     border: solid 1px black;
     cursor: pointer;
@@ -21,6 +21,52 @@ export const Container = styled.div`
         justify-content: center;
     }
 `
+
+export const OfferBanner = styled.div`
+    position: absolute;
+    padding: 5px;
+    width: 102px;
+    border-radius: 8px;
+    background: linear-gradient(157deg, rgba(255, 168, 0, 1) 0%, rgba(255, 248, 0, 1) 100%);
+    box-shadow: 0 0 20px yellow;
+    top: 5px;
+    left: -60px;
+    transform: rotate(-45deg);
+    justify-content: center;
+    position: relative;
+
+    @media (max-width: 390px) {
+        left: -45px;
+    }
+`
+
+export const StockOff = styled.div`
+    position: absolute;
+    padding: 5px;
+    border: dashed 3px red;
+    border-radius: 12px;
+    width: 163px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000017;
+    transform: rotate(-10deg);
+
+    p{
+        color: red;
+        font-weight: bold;
+        font-size: 15px;
+        text-shadow: 0 0 15px black;
+    }
+`
+
+export const Offertitle = styled.p`
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+`
+
 export const DivSpan = styled.div`
     display: flex;
     flex-direction: column;
@@ -49,6 +95,8 @@ export const PdPrice = styled.p`
     font-weight: 600;
     text-align: center;
     font-size: 16px;
+
+    display: none;
 `
 
 export const Pdinfo = styled.p`
@@ -56,6 +104,8 @@ export const Pdinfo = styled.p`
     font-weight: 500;
     color: #29243a;
     text-align: center;
+
+    display: none;
 `
 
 export const PdButton = styled.button`
@@ -66,7 +116,7 @@ export const PdButton = styled.button`
     color: white;
     font-weight: 700;
     font-size: 13px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 3px;

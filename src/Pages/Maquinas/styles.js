@@ -13,7 +13,7 @@ export const Black = styled.b`
     color: #ffdb00;
 `
 
-export const Section1 = styled.div`
+export const Section1 = styled.section`
     position: relative;
     background: url('${BackGround1}');
     background-size: cover;
@@ -27,6 +27,11 @@ export const Section1 = styled.div`
 
 export const ImageMachines = styled.img`
     width: 38%;
+
+    @media (max-width: 650px) {
+        position: absolute;
+        width: 70%;
+    }
 `
 
 export const SpanSec1 = styled.div`
@@ -36,12 +41,21 @@ export const SpanSec1 = styled.div`
     width: 500px;
     margin-bottom: 150px;
 
+    @media (max-width: 650px) {
+        width: 95%;
+        margin-bottom: 265px;
+    }
+
     h1{
         color: white;
         font-weight: 500;
         text-align: start;
         margin-bottom: 20px;
         border-bottom: solid 2px;
+
+        @media (max-width: 650px) {
+        text-align: center;
+    }
     }
     p{
         color: white;
@@ -52,6 +66,12 @@ export const SpanSec1 = styled.div`
     div{
         display: flex;
         gap: 25px;
+
+        @media (max-width: 650px) {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
     }
 `
 
@@ -63,6 +83,10 @@ export const AboutTosa = styled.button`
     font-weight: 600;
     font-size: 14px;
     color: white;
+
+    @media (max-width: 650px) {
+            width: 100%;
+        }
 `
 
 export const AboutMachines = styled.button`
@@ -73,10 +97,14 @@ export const AboutMachines = styled.button`
     font-weight: 600;
     font-size: 14px;
     color: white;
+
+    @media (max-width: 650px) {
+            width: 100%;
+        }
 `
 
 
-export const Section2 = styled.div`
+export const Section2 = styled.section`
     min-height: 100vh;
     background: url('${BackgroundDark1}');
     background-size: cover;
@@ -86,11 +114,22 @@ export const Section2 = styled.div`
     justify-content: center;
     flex-direction: column;
     padding: 60px 0;
+
+    @media (max-width: 650px) {
+        padding: 120px 0;
+
+        }
 `
 
 export const SpanSec2 = styled.div`
     display: flex;
     gap: 100px;
+
+    @media (max-width: 650px) {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+        }
 `
 
 export const DivAbout = styled.div`
@@ -130,10 +169,14 @@ export const PSec2 = styled.p`
     text-align: center;
     line-height: 25px;
     margin-top: 70px;
+
+    @media (max-width: 650px) {
+            width: 95%;
+        }
 `
 
 
-export const Section3 = styled.div`
+export const Section3 = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,7 +201,7 @@ export const TitlesSec3 = styled.div`
 
 export const TosaTypes = styled.div`
     width: 800px;
-    height: 290px;
+    min-height: 290px;
     background-color: black;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -166,8 +209,19 @@ export const TosaTypes = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        width: 95%;
+        padding: 10px;
+        justify-content: center;
+    }
+
     img{
         width: 54%;
+
+        @media (max-width: 650px) {
+        width: 100%;
+    }
     }
 
     div{
@@ -182,11 +236,20 @@ export const TosaTypes = styled.div`
             text-align: center;
             font-weight: 500;
             text-shadow: 0 0 15px;
+
+            @media (max-width: 650px) {
+             font-size: 25px;
+            }
         }
 
         p{
             color: white;
             font-size: 14px;
+
+            @media (max-width: 650px) {
+                text-align: center;
+                font-size: 18px;
+            }
         }
     }
 `
@@ -212,6 +275,11 @@ export const Sec3Machines = styled.div`
     justify-content: center;
     gap: 85px;
     margin-top: 100px;
+
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        gap: 150px;
+            }
 `
 
 export const TypeMachine = styled.div`
@@ -264,6 +332,11 @@ export const Sec3Bottom = styled.div`
 
 export const TitleBotton = styled.h2`
     color: white;
+
+    @media (max-width: 650px) {
+        text-align: center;
+        width: 95%;
+    }
 `
 
 export const SpanBotton = styled.div`
@@ -274,6 +347,7 @@ export const SpanBotton = styled.div`
     justify-content: center;
     margin-top: 60px;
     width: 80%;
+    padding-bottom: 80px;
 `
 
 export const DivCuidados = styled.div`
@@ -282,13 +356,23 @@ export const DivCuidados = styled.div`
     background-color: #3b3b3b;
     border-radius: 8px;
     width: 450px;
-    height: 100px;
+    min-height: 100px;
     padding: 15px;
     gap: 12px;
+
+    @media (max-width: 650px) {
+        width: 95%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 `
 
 export const ImgBottom = styled.img`
     width: 15%;
+
+    @media (max-width: 650px) {
+        width: 30%;
+    }
 `
 
 export const DivTexts = styled.div``
@@ -297,6 +381,11 @@ export const BTitletexts = styled.p`
     color: white;
     font-weight: 700;
     font-size: 18px;
+
+    @media (max-width: 650px) {
+        text-align: center;
+        margin-bottom: 10px;
+    }
 `
 
 export const Btexts = styled.p`
@@ -304,11 +393,15 @@ export const Btexts = styled.p`
     font-size: 15px;
     line-height: 18px;
     font-weight: 500;
+
+    @media (max-width: 650px) {
+        text-align: center;
+    }
 `
 
 
-export const Section4 = styled.div`
-    display: flex;
+export const Section4 = styled.section`
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;

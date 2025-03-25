@@ -12,7 +12,7 @@ export const Black = styled.b`
     color: #ffdd00;
 `
 
-export const Section1 = styled.div`
+export const Section1 = styled.section`
     background: url('${BackGround1}');
     background-size: cover;
     background-position: center;
@@ -31,9 +31,19 @@ export const Sec1Span = styled.div`
     gap: 20px;
     width: 400px;
 
+    @media (max-width: 650px) {
+        left: 15px;
+        width: 95%;
+        }
+
     h1{
         color: white;
         border-bottom: solid;
+        text-shadow: 0 0 13px black;
+
+        @media (max-width: 650px) {
+        text-align: center;
+        }
     }
 
     p{
@@ -67,7 +77,7 @@ export const AboutBlade = styled.button`
 `
 
 
-export const Section2 = styled.div`
+export const Section2 = styled.section`
     min-height: 65vh;
     background-color: rgb(29, 29, 29);
     display: flex;
@@ -84,6 +94,10 @@ export const InfoCuidados = styled.div`
     padding: 13px;
     border: dashed 3px rgb(255, 208, 0);
 
+    @media (max-width: 650px) {
+        width: 90%;
+    }
+
         .InfoSec2{
             color:rgb(255, 208, 0);
             text-align: center;
@@ -93,6 +107,8 @@ export const InfoCuidados = styled.div`
 export const Sec2Info = styled.div`
     display: flex;
     gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
 
     div{
     width: 220px;
@@ -102,6 +118,8 @@ export const Sec2Info = styled.div`
     flex-direction: column;
     padding: 58px 12px 12px 12px;
     gap: 10px;
+
+    
 
     h5{
         color: white;
@@ -114,7 +132,7 @@ export const Sec2Info = styled.div`
     }
 `
 
-export const Section3 = styled.div`
+export const Section3 = styled.section`
     height: 50vh;
     background-color:rgb(37, 37, 37);
     display: flex;
@@ -138,13 +156,21 @@ export const Section3 = styled.div`
 
 export const Img1 = styled.img`
     width: 534px;
+
+    @media (max-width: 650px) {
+        display: none;
+    }
 `
 
 export const Img2 = styled.img`
     width: 534px;
+
+    @media (max-width: 650px) {
+        display: none;
+    }
 `
 
-export const Section4 = styled.div`
+export const Section4 = styled.section`
     min-height: 75vh;
     display: flex;
     align-items: center;
@@ -159,6 +185,11 @@ export const Section4 = styled.div`
         font-size: 30px;
         text-align: center;
         width: 800px;
+
+        @media (max-width: 650px) {
+            width: 95%;
+            font-size: 25px;
+    }
     }
 
     .Sec4p{
@@ -166,12 +197,21 @@ export const Section4 = styled.div`
         width: 700px;
         text-align: center;
         font-size: 20px;
+
+        @media (max-width: 650px) {
+        width: 90%;
+    }
     }
 `
 
 export const BladesTypes = styled.div`
     display: flex;
     gap: 25px;
+
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 `
 
 export const TypeBlade = styled.div`
@@ -188,6 +228,15 @@ export const DivBlade = styled.div`
     width: 160px;
     border: solid 3px yellow;
     border-radius: 500px;
+    position: relative;
+    overflow: hidden;
+
+    img{
+        position: absolute;
+        width: 131px;
+        right: 0;
+        bottom: 0;
+    }
 `
 
 export const PBlade = styled.p`
@@ -197,7 +246,7 @@ export const PBlade = styled.p`
 `
 
 
-export const Section5 = styled.div`
+export const Section5 = styled.section`
     min-height: 75vh;
     background-color:rgb(29, 29, 29);
     display: flex;
@@ -217,17 +266,69 @@ export const MarksBlade = styled.div`
     display: flex;
     gap: 45px;
 
-    div{
-        width: 210px;
-        height: 260px;
-        background-color: #313131;
-        border-radius: 12px;
-        border: solid 4px #ffcd00;
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+`
+
+export const MarkDiv = styled.div`
+    width: 210px;
+    height: 260px;
+    background-color: #313131;
+    border-radius: 12px;
+    border: solid 4px #ffcd00;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+
+    .ImageMarkDiv{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background-color: #272727;
+
+        &:hover{
+            opacity: 0;
+        }
+
+        img{
+        width: 130px;
+
+        @media (max-width: 980px) {
+        width: 190px;
+  }
+    }
+    }
+
+    .DescMark{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        img{
+            width: 45%;
+        }
+
+        p{
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            width: 95%;
+            color: #ffcd00;
+        }
     }
 `
 
 
-export const Section6 = styled.div`
+export const Section6 = styled.section`
     min-height: 95vh;
     background-color:rgb(0, 0, 0);
     display: flex;
@@ -238,6 +339,12 @@ export const Section6 = styled.div`
 export const Sec6Part1 = styled.div`
     display: flex;
     gap: 50px;
+
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 80px 0;
+    }
 `
 
 export const BladeTS = styled.div`
@@ -246,6 +353,7 @@ export const BladeTS = styled.div`
     align-items: center;
     justify-content: center;
     width: 220px;
+    cursor: pointer;
     
     .WhitePoint{
         background-color: white;
@@ -282,7 +390,7 @@ export const DescTS = styled.div`
 `
 
 
-export const Section7 = styled.div`
+export const Section7 = styled.section`
     background-color:rgb(29, 29, 29);
     padding: 80px 0 155px 0;
     display: flex;
@@ -298,15 +406,26 @@ export const IconParagrafo = styled.img`
 
 export const SteelDiv = styled.div`
     background-color: black;
-    height: 396px;
+    min-height: 396px;
     width: 900px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 650px) {
+        width: 95%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px;
+    }
 `
 
 export const ImagemTS = styled.img`
     width: 44%;
+
+    @media (max-width: 650px) {
+        width: 60%;
+    }
 `
 
 export const SpanSteel = styled.div`

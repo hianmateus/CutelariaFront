@@ -21,11 +21,12 @@ const schema = yup
       return value && value.length > 0 && (value[0].type === 'image/jpeg' || value[0].type === 'image/png')
     }),
     desc: yup.string().required('Escreva a Descrição'),
-    type: yup.string().required('Defina o Equipamento'),
+    type: yup.string(),
     info1: yup.string().required('Escreva a informação'),
     info2: yup.string().required('Defina o tipo do Equipamento'),
     info3: yup.string().required('Digite o Peso do Produto'),
-    info4: yup.string().required('Escreva o Link para o MercadoLivre'),
+    info4: yup.string(),
+    stock: yup.number(),
 
   })
 
@@ -63,7 +64,7 @@ export function NewProduct() {
     const productFormData = new FormData()
 
     productFormData.append('name', data.name)
-    productFormData.append('name', data.price)
+    productFormData.append('price', data.price)
     productFormData.append('category_id', data.category.id)
     productFormData.append('file', data.file[0])
     productFormData.append('desc', data.desc)
@@ -73,6 +74,7 @@ export function NewProduct() {
     productFormData.append('info3', data.info3)
     productFormData.append('info4', data.info4)
     productFormData.append('offer', data.offer)
+    productFormData.append('stock', data.stock)
 
     await toast.promise(api.post('/products', productFormData), {
       pending: 'Adicionando Produto...',
@@ -123,7 +125,7 @@ export function NewProduct() {
 
           <InputGroup>
             <Label>Peso</Label>
-            <Input type="text" {...register("info3")} placeholder="Ex: 0,060 ou 5,00 KG" />
+            <Input type="text" {...register("info3")} placeholder="Ex: 0,060 GM ou 5,000 KG" />
             <ErrorMessage>{errors?.info3?.message}</ErrorMessage>
           </InputGroup>
 
@@ -137,6 +139,12 @@ export function NewProduct() {
             <Label>LinkMC</Label>
             <Input type="text" {...register("info4")} placeholder="URL no MercadoLivre" />
             <ErrorMessage>{errors?.info4?.message}</ErrorMessage>
+          </InputGroup>
+
+          <InputGroup>
+            <Label>Estoque</Label>
+            <Input type="text" {...register("stock")} placeholder="Quantidade no Estoque" />
+            <ErrorMessage>{errors?.stock?.message}</ErrorMessage>
           </InputGroup>
 
         </TopForm>

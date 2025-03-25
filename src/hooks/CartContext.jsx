@@ -1,9 +1,13 @@
 import { useContext, createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useUser } from "../hooks/UserContext"; // Importando o contexto do usuário
 
 const CartContext = createContext({});
 
 // eslint-disable-next-line react/prop-types
 export const CartProvider = ({ children }) => {
+    const { userInfo } = useUser();
+
     const [productSelect, setProductSelect] = useState([]);
     const [finalPrice, setFinalPrice] = useState(0);
     const [address, setAddressState] = useState(() => {
@@ -49,6 +53,16 @@ export const CartProvider = ({ children }) => {
     }, [cartProducts]);
 
     const putProductInCart = (product) => {
+        if (!userInfo || !userInfo.email) { // Verifica se há um usuário logado
+            toast.error("Você precisa estar logado para adicionar produtos ao carrinho!");
+            return;
+        }
+
+        if (product.stock <= 0) {
+            toast.error("Esse Produto esta sem Estoque");
+            return;
+        }
+
         const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id);
         let newProductsInCart;
         if (cartIndex >= 0) {
@@ -66,7 +80,6 @@ export const CartProvider = ({ children }) => {
     const selectProduct = (productId) => {
         const newProduct = cartProducts.map((prd) => prd.id = productId);
         setProductSelect(newProduct);
-        console.log(productSelect);
     };
 
     const clearCart = () => {
@@ -85,9 +98,18 @@ export const CartProvider = ({ children }) => {
 
     const increaseProduct = (productId) => {
         setCartProducts((prevCart) => {
-            const updatedCart = prevCart.map(prd =>
-                prd.id === productId ? { ...prd, quantity: prd.quantity + 1 } : prd
-            );
+            const updatedCart = prevCart.map(prd => {
+                if (prd.id === productId) {
+                    // Verifica se a quantidade atual +1 não ultrapassa o estoque
+                    if (prd.quantity < prd.stock) {
+                        return { ...prd, quantity: prd.quantity + 1 };
+                    } else {
+                        toast.error("Estoque insuficiente para adicionar mais unidades deste produto.");
+                    }
+                }
+                return prd;
+            });
+
             upDateLocalStorage(updatedCart);
             return updatedCart;
         });

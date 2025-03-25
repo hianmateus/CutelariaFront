@@ -96,10 +96,10 @@ export function Login() {
                         <p>{errors?.password?.message}</p>
 
                     </InputContainer>
-                    <Button type="onSubmit" data-aos="fade-down" data-aos-delay="500" data-aos-duration="800">Entrar</Button>
+                    <Button>Entrar</Button>
                 </Form>
 
-                <PLink data-aos="fade-down" data-aos-delay="600" data-aos-duration="800">Não possui conta? <Link to='/cadastro'>Clique aqui.</Link></PLink>
+                <PLink>Não possui conta? <Link to='/cadastro'>Clique aqui.</Link></PLink>
 
             </ConteinerLeft>
         </General>

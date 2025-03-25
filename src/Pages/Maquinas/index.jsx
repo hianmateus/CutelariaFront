@@ -29,10 +29,29 @@ import DogExample1 from '../../assets/imgs/Maquinas/DogExample1.png'
 import DogExample2 from '../../assets/imgs/Maquinas/DogExample2.png'
 import DogExample3 from '../../assets/imgs/Maquinas/DogExample3.png'
 
+import { useCart } from "../../hooks/CartContext"
+import { MenuProduct } from "../../components";
+import { useState } from "react"
 
 export function Maquinas() {
+    const [isBGVisible, setIsBGVisible] = useState(false);
+    const { activeCategory, setActiveCategory, typeProduct, setTypeProduct } = useCart();
+
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <General>
+            <MenuProduct isBGVisible={isBGVisible}
+                setIsBGVisible={setIsBGVisible}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                typeProduct={typeProduct} />
+
             <Section1>
                 <ImageMachines src={MaquinasSec1} />
 
@@ -41,8 +60,8 @@ export function Maquinas() {
                     <p>ENTENDA MAIS SOBRE</p>
 
                     <div>
-                        <AboutTosa>Tipos de Tosa</AboutTosa>
-                        <AboutMachines>Maquinas Conhecidas</AboutMachines>
+                        <AboutTosa onClick={() => scrollToSection("Tosas")}>Tipos de Tosa</AboutTosa>
+                        <AboutMachines onClick={() => scrollToSection("Maquinas")}>Maquinas Conhecidas</AboutMachines>
                     </div>
                 </SpanSec1>
             </Section1>
@@ -73,7 +92,7 @@ export function Maquinas() {
                 <PSec2>Ambos os tipos podem ser complementares para um trabalho profissional e de alta qualidade</PSec2>
             </Section2>
 
-            <Section3>
+            <Section3 id="Tosas">
                 <TitlesSec3>
                     <p>APRENDA MAIS SOBRE OS TIPOS DE TOSA</p>
                     <h2>CATEGORIAS DE TOSA</h2>
@@ -117,14 +136,18 @@ export function Maquinas() {
                 </TosaTypes>
 
 
-                <Titles2Sec3>
+                <Titles2Sec3 id="Maquinas">
                     <h2>TIPOS DE MÁQUINAS DE TOSA</h2>
                     <p>Máquinas mais conhecidas para melhor Desempenho</p>
                 </Titles2Sec3>
 
                 <Sec3Machines>
                     <TypeMachine>
-                        <Divbk>
+                        <Divbk onClick={() => {
+                            setIsBGVisible(true)
+                            setActiveCategory(3)
+                            setTypeProduct('Profissional')
+                        }}>
                             <img src={TypeMachine1} alt="maquina-exemplo" />
 
                             <p>Profíssionais</p>
@@ -134,7 +157,11 @@ export function Maquinas() {
                     </TypeMachine>
 
                     <TypeMachine>
-                    <Divbk>
+                        <Divbk onClick={() => {
+                            setIsBGVisible(true)
+                            setActiveCategory(3)
+                            setTypeProduct('SemiProfissional')
+                        }}>
                             <img src={TypeMachine2} alt="maquina-exemplo" />
 
                             <p>Semi Profíssionais</p>
@@ -144,7 +171,11 @@ export function Maquinas() {
                     </TypeMachine>
 
                     <TypeMachine>
-                    <Divbk>
+                        <Divbk onClick={() => {
+                            setIsBGVisible(true)
+                            setActiveCategory(3)
+                            setTypeProduct('Acabamento')
+                        }}>
                             <img src={TypeMachine3} alt="maquina-exemplo" />
 
                             <p>Acabamento</p>
@@ -159,12 +190,12 @@ export function Maquinas() {
 
                     <SpanBotton>
                         <DivCuidados>
-                            <ImgBottom src={Iconcuidado1} alt="imagem-icone-exemplo"/>
+                            <ImgBottom src={Iconcuidado1} alt="imagem-icone-exemplo" />
 
                             <DivTexts>
                                 <BTitletexts>Limpeza</BTitletexts>
                                 <Btexts>Remover pelos e detritos após cada uso ajuda prolongar a vida útil
-                                     da máquina e a manter eficiência de corte</Btexts>
+                                    da máquina e a manter eficiência de corte</Btexts>
                             </DivTexts>
                         </DivCuidados>
 
@@ -174,7 +205,7 @@ export function Maquinas() {
                             <DivTexts>
                                 <BTitletexts>Redução de Ruido</BTitletexts>
                                 <Btexts>Modelos mais recentes são projetados para serem mais silênciosos,
-                                     o que amuda a reduzir o estresse dos animais durante a tosa</Btexts>
+                                    o que amuda a reduzir o estresse dos animais durante a tosa</Btexts>
                             </DivTexts>
                         </DivCuidados>
 
@@ -208,7 +239,7 @@ export function Maquinas() {
                             higiene, prevenção de parasitas e facilitando a detecção de problemas de saúde.</Sec4Texts>
                     </Sec4span>
 
-                    <ImgSec4 src={DogExample1} alt="imagem-exemplo-cachorro"/>
+                    <ImgSec4 src={DogExample1} alt="imagem-exemplo-cachorro" />
                 </Sec4Div>
 
                 <Sec4Div>
@@ -218,7 +249,7 @@ export function Maquinas() {
                             influenciando a eficiência, segurança e conforto para o animal e o tosador.</Sec4Texts>
                     </Sec4span>
 
-                    <ImgSec4 src={DogExample2} alt="imagem-exemplo-cachorro"/>
+                    <ImgSec4 src={DogExample2} alt="imagem-exemplo-cachorro" />
                 </Sec4Div>
 
                 <Sec4Div>
@@ -228,7 +259,7 @@ export function Maquinas() {
                             refrigeração eficiente, é essencial para um resultado satisfatório e benéfico para o animal.</Sec4Texts>
                     </Sec4span>
 
-                    <ImgSec4 src={DogExample3} alt="imagem-exemplo-cachorro"/>
+                    <ImgSec4 src={DogExample3} alt="imagem-exemplo-cachorro" />
                 </Sec4Div>
             </Section4>
         </General>

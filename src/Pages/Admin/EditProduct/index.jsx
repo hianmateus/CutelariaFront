@@ -20,13 +20,14 @@ const schema = yup
         info2: yup.string().required('Defina o tipo do Equipamento'),
         info3: yup.string().required('Digite o Peso do Produto'),
         info4: yup.string(),
+        stock: yup.number(),
 
     })
 
 import {
     General, Form, TopForm, InputGroup,
     Label, Input, InputUpload, Select, SubmitButton,
-    ErrorMessage, ChekBoxDiv, InputProducts
+    ErrorMessage, ChekBoxDiv
 } from "./styles"
 import { toast } from "react-toastify"
 
@@ -69,6 +70,7 @@ export function EditProduct() {
         productFormData.append('info3', data.info3)
         productFormData.append('info4', data.info4)
         productFormData.append('offer', data.offer)
+        productFormData.append('stock', data.stock)
 
         await toast.promise(api.put(`/products/${product.id}`, productFormData), {
             pending: 'Editando Produto...',
@@ -76,17 +78,14 @@ export function EditProduct() {
             error: 'Falha ao Editar o Produto'
         })
 
-        console.log(product.offer)
-
         setTimeout(() => {
             navigate('/admin/produtos')
-        }, 1700);
+        }, 1000);
     }
 
 
     return (
         <General>
-            <InputProducts type="text" />
 
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <TopForm>
@@ -137,6 +136,12 @@ export function EditProduct() {
                         <Input type="text" {...register("info4")} placeholder="URL no MercadoLivre" defaultValue={product.info4} />
                         <ErrorMessage>{errors?.info4?.message}</ErrorMessage>
                     </InputGroup>
+
+                    <InputGroup>
+                                <Label>Estoque</Label>
+                                <Input type="text" {...register("stock")} placeholder="Quantidade no Estoque" defaultValue={product.stock} />
+                                <ErrorMessage>{errors?.stock?.message}</ErrorMessage>
+                              </InputGroup>
 
                 </TopForm>
                 <InputGroup>

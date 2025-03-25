@@ -30,6 +30,12 @@ export function Header() {
         }
     }
 
+    function HiddeMobile() {
+        if (visibleMenu === true) {
+            setVisibleMenu(false)
+        }
+    }
+
     const { logout, userInfo } = useUser()
     function logoutUser() {
         logout()
@@ -43,7 +49,11 @@ export function Header() {
 
     const navigate = useNavigate()
     const BackHome = () => {
-        navigate('/');
+        if (userInfo.admin) {
+            navigate('/admin/produtos');
+        } else {
+            navigate('/');
+        }
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
@@ -112,22 +122,22 @@ export function Header() {
 
                 <ContainerCenter>
                     <div data-aos="fade-right" data-aos-delay="800">
-                        <Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>HOME</Link>
+                        <Link to='/' onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); HiddeMobile() }}>HOME</Link>
                     </div>
                     <div data-aos="fade-right" data-aos-delay="400">
-                        <Link to='/laminas' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>LÂMINAS</Link>
+                        <Link to='/laminas' onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); HiddeMobile() }}>LÂMINAS</Link>
                     </div>
                     <div data-aos="fade-right" data-aos-delay="500">
-                        <Link to='/tesouras' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>TESOURAS</Link>
+                        <Link to='/tesouras' onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); HiddeMobile() }}>TESOURAS</Link>
                     </div>
                     <div data-aos="fade-right" data-aos-delay="600">
-                        <Link to='/maquinas' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>MÁQUINAS</Link>
+                        <Link to='/maquinas' onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); HiddeMobile() }}>MÁQUINAS</Link>
                     </div>
                     <div data-aos="fade-right" data-aos-delay="700">
-                        <Link to='/equipamentos' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>EQUIPAMENTOS</Link>
+                        <Link to='/equipamentos' onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); HiddeMobile() }}>EQUIPAMENTOS</Link>
                     </div>
                     <div data-aos="fade-right" data-aos-delay="800">
-                        <Link to='/pentes' onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>PENTES</Link>
+                        <Link to='/pentes' onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); HiddeMobile() }}>PENTES</Link>
                     </div>
                 </ContainerCenter>
 
@@ -139,7 +149,7 @@ export function Header() {
                                 <span>Olá, </span> <UserName>{userInfo.name}</UserName>
                             </Span>
 
-                            <Sair onClick={logoutUser}>Sair</Sair>
+                            <Sair onClick={logoutUser}></Sair>
                         </div>
                     </Profile>
 

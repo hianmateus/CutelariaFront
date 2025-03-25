@@ -48,8 +48,8 @@ export const CategoryMenu = styled.div`
     gap: 15px;
     margin-bottom: 50px;
     width: 100%;
-    justify-content: center;
     flex-wrap: wrap;
+    padding-left: 30px;
 
     @media (max-width: 835px) {
         margin-top: 25px;
@@ -70,6 +70,17 @@ export const CategoryButton = styled.button`
     &:hover{
         background-color: rgba(0, 0, 0, 0.32);
     }
+`
+
+export const CategoryName = styled.p`
+    border: none;
+    color: white;
+    background-color: transparent;
+    background-color: black;
+    font-weight: bold;
+    padding: 7px;
+    font-size: 25px;
+    border-radius: 8px;
 `
 
 export const ButtonClose = styled.p`

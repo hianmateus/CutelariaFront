@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BackGround1 from '../../assets/imgs/Pentes/BackGround1.png'
 
 export const General = styled.div`
     min-height: 100vh;
@@ -10,25 +11,38 @@ export const Black = styled.b`
 `
 
 export const Section1 = styled.section`
-    min-height: 90vh;
+    background: url('${BackGround1}');
+    background-size: cover;
+    background-position: top;
+    min-height: 75vh;
     width: 100%;
     position: relative;
     background-color: black;
 `
 export const DivSec1 = styled.div`
     position: absolute;
-    bottom: 25%;
+    bottom: 15%;
     left: 15%;
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 500px;
+
+    @media (max-width: 650px) {
+        width: 390px;
+        bottom: 20%;
+        left: 5px;
+    }
 `
 
 export const H1Sec1 = styled.h1`
     color: white;
     font-size: 38px;
     font-weight: 600;
+
+    @media (max-width: 650px) {
+        font-size: 28px;
+    }
 `
 
 export const Sec1P = styled.p`
@@ -75,8 +89,8 @@ export const DivSec2 = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 50%;
-    gap: 50px;
+    width: 90%;
+    gap: 30px;
 `
 
 export const InfoSec2 = styled.div`
@@ -87,10 +101,14 @@ export const InfoSec2 = styled.div`
     gap: 12px;
     padding: 8px;
     width: 250px;
+
+    img{
+        border-radius: 12px;
+    }
 `
 
 export const TitleSec2 = styled.p`
-    color: white;
+    color: #ffe900;
     font-weight: 700;
     font-size: 18px;
     text-align: center;
@@ -118,6 +136,10 @@ export const H1Sec3 = styled.h1`
     color: #ffea89;
     font-weight: 600;
     font-size: 27px;
+
+    @media (max-width: 650px) {
+        text-align: center;
+    }
 `
 
 export const DescSec3 = styled.p`
@@ -146,18 +168,22 @@ export const DivEquip = styled.div`
 `
 
 export const DivIMG = styled.div`
-    background-color: #2a2a2a;
-    height: 215px;
     width: 215px;
-    border-radius: 6px;
-    border: solid 4px #fee988;
     margin-bottom: 10px;
+
+    img{
+        width: 100%;
+    border: solid 4px #fee988;
+    border-radius: 6px;
+
+    }
 `
 
 export const PName = styled.p`
     color: white;
     font-size: 18px;
     font-weight: 600;
+    text-align: center;
 `
 
 export const PDesc = styled.p`
@@ -218,27 +244,54 @@ export const Sec4Equipamento = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 5px gray;
     border-radius: 12px;
     min-height: 370px;
+    width: 300px;
+    gap: 15px;
+`
+
+export const EquiTitle = styled.p`
+    color: white;
+    font-size: 25px;
+    font-weight: 500;
+    text-shadow: 0 0 20px;
 `
 
 export const ProductDiv = styled.div`
-    background-color: black;
-    height: 260px;
-    width: 300px;
+    cursor: pointer;
     border-radius: 12px;
+
+    img{
+        width: 100%;
+        border-radius: 12px;
+
+        &:hover{
+            box-shadow: 0 0 18px #ffe900;
+        
+    }
+
+    }
+
+    &:hover{
+        transform: translateY(-15px);
+    }
 `
 
-export const DescProduct = styled.p``
+export const DescProduct = styled.p`
+    color:rgb(255, 246, 146);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: 0 0 12px;
+`
 
 
 export const Section5 = styled.section`
-    min-height: 100vh;
+    min-height: 80vh;
     width: 100%;
     position: relative;
     background-color:rgb(45, 45, 45);
-    padding: 50px 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -281,14 +334,15 @@ export const InfoContainer = styled.div`
 `
 
 export const InfoImage = styled.div`
-    height: 280px;
-    width: 280px;
-    border-radius: 8px;
-    background-color: #181818;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+
+    img{
+        width: 100%;
+        border-radius: 8px;
+
+    }
 `
 
 export const PinfoSec5 = styled.p`

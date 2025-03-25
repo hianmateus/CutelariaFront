@@ -140,13 +140,47 @@ export const MarkInfo = styled.div`
     height: 250px;
     width: 200px;
     cursor: pointer;
+    position: relative;
+    
 
-    img{
+    .ImageMarkDiv{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background-color: white;
+
+        &:hover{
+            opacity: 0;
+        }
+
+        img{
         width: 130px;
 
         @media (max-width: 980px) {
         width: 190px;
   }
+    }
+    }
+
+    .DescMark{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        img{
+            width: 45%;
+        }
+
+        p{
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
     }
 `
 
@@ -171,7 +205,15 @@ export const Section3 = styled.section`
         text-align: center;
         font-weight: 600;
         font-size: 19px;
+
+        @media (max-width: 650px) {
+        width: 90%;
+  }
     }
+
+    @media (max-width: 650px) {
+        width: 100%;
+  }
 `
 
 // SECTION 4
@@ -231,6 +273,8 @@ export const TypeBlades = styled.div`
 export const BladesCategory = styled.div`
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
 `
 
 export const BladeType = styled.div`
@@ -283,16 +327,25 @@ export const Section5 = styled.section`
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    
-    img{
-        width: 30%;
-    }
+    @media (max-width: 650px) {
+            gap: 50px;
+        }
 
-    div{
+    .SpanSec5{
         display: flex;
         flex-direction: column;
         gap: 20px;
         width: 30%;
+        @media (max-width: 650px) {
+            width: 80%;
+        }
+
+        div{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         span{
             color: white;
             font-weight: 600;
@@ -300,6 +353,20 @@ export const Section5 = styled.section`
         }
     }
 
+`
+
+export const ImageExample = styled.img`
+    width: 30%;
+
+    @media (max-width: 650px) {
+    width: 85%;
+    margin-bottom: 41px;
+} 
+`
+
+export const IconSec5 = styled.img`
+    filter: invert(1);
+    width: 50px;
 `
 
 // SECTION 6
@@ -314,8 +381,26 @@ export const Section6 = styled.section`
     justify-content: space-between;
     gap: 25px;
 
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        }
+
+    div{
+        @media (max-width: 650px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }    
+
     img{
         width: 300px;
+
+        @media (max-width: 650px) {
+        width: 50%;
+        }
     }
 
     h3{
@@ -325,6 +410,11 @@ export const Section6 = styled.section`
         width: 430px;
         font-weight: 500;
         text-shadow: 0 0 17px;
+
+        @media (max-width: 650px) {
+            width: 90%;
+            text-align: center;
+        }
     }
 
     p{
@@ -333,6 +423,11 @@ export const Section6 = styled.section`
         font-size: 18px;
         font-weight: 600;
         width: 470px;
+
+        @media (max-width: 650px) {
+            width: 90%;
+            text-align: center;
+        }
     }
 
 `
@@ -351,7 +446,7 @@ export const Section7 = styled.section`
 
     .Sec17 {
         width: 95%;
-        height: 50vh;
+        min-height: 50vh;
         margin-bottom: 120px;
         background-color: black;
         display: flex;
@@ -359,8 +454,18 @@ export const Section7 = styled.section`
         justify-content: center;
         padding: 15px 45px;
 
+        @media (max-width: 650px) {
+            padding: 45px 15px;
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+
         img{
             width: 300px;
+
+            @media (max-width: 650px) {
+                width: 55%;
+        }
         }
 
         div{
@@ -369,11 +474,21 @@ export const Section7 = styled.section`
             align-items: center;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
+
+            @media (max-width: 650px) {
+                flex-direction: column;
+        }
+            
             p{
                 width: 40%;
                 font-size: 15px;
                 display: flex;
                 flex-direction: column;
+                @media (max-width: 650px) {
+                width: 100%;
+        }
+
                 .TileLM{
                     color: #fecb00;
                     font-size: 16px;
@@ -387,7 +502,7 @@ export const Section7 = styled.section`
 
     .Sec27 {
         width: 95%;
-        height: 50vh;
+        min-height: 50vh;
         margin-bottom: 120px;
         background-color: black;
         display: flex;
@@ -395,8 +510,18 @@ export const Section7 = styled.section`
         justify-content: center;
         padding: 15px 45px;
 
+        @media (max-width: 650px) {
+            padding: 45px 15px;
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+
         img{
             width: 300px;
+
+            @media (max-width: 650px) {
+                width: 55%;
+        }
         }
 
         div{
@@ -405,11 +530,19 @@ export const Section7 = styled.section`
             align-items: center;
             justify-content: center;
             gap: 20px;
+            @media (max-width: 650px) {
+                flex-direction: column;
+        }
+
             p{
                 width: 40%;
                 font-size: 15px;
                 display: flex;
                 flex-direction: column;
+                @media (max-width: 650px) {
+                width: 100%;
+        }
+
                 .TileLC{
                     color: #24ff00;
                     font-size: 16px;

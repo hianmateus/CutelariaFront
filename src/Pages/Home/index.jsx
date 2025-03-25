@@ -37,8 +37,6 @@ export function Home() {
         if (status === "success" && !requestSent.current && cartProducts.length > 0) {
             requestSent.current = true; // ✅ Marca como enviado
 
-            console.log("🏠 Endereço recebido no Home:", address);
-            console.log("🛒 Produtos no carrinho antes do envio:", cartProducts);
 
             const products = cartProducts.map((product) => ({
                 id: product.id,
@@ -49,6 +47,9 @@ export function Home() {
                 .then(({ status }) => {
                     if (status === 200 || status === 201) {
                         toast.success("🎉 Pedido Realizado com Sucesso!");
+
+                        updateStockAfterPurchase(products);
+
                         setTimeout(() => navigate("/", { replace: true }), 2000);
                         clearCart();
                     } else if (status === 409) {
@@ -61,9 +62,26 @@ export function Home() {
                     toast.error("⚠️ Falha no Sistema! Tente novamente.");
                 });
 
-            console.log("📦 Produtos enviados no pedido:", products);
         }
     }, [searchParams, clearCart, navigate, cartProducts, address]);
+
+    const updateStockAfterPurchase = async (products) => {
+        try {
+            // Envia a requisição para o backend para subtrair o estoque
+            // eslint-disable-next-line no-unused-vars
+            const response = await api.patch('/products/update-stock', {
+                products: products.map((product) => ({
+                    id: product.id,
+                    quantity: product.quantity, // Subtrai a quantidade comprada
+                })),
+            });
+
+            
+        } catch (error) {
+            console.log(error)
+            toast.error("⚠️ Erro ao atualizar o estoque!");
+        }
+    };
 
 
 
@@ -119,7 +137,7 @@ export function Home() {
                             <h2 data-aos="flip-down" data-aos-delay="300">SOBRE <b>NÓS</b></h2>
 
                             <p data-aos="fade-down" data-aos-delay="300" data-aos-duration="800">Na Cutelaria Pets, oferecemos mais de que produtos e serviços:
-                                compratilhamos nosso conhecimento para garantir que você faça a escolha certa.
+                                compartilhamos nosso conhecimento para garantir que você faça a escolha certa.
                                 Somos especialistas no segmento pet, unindo serviços de afiação e assistência
                                 técnica especializada com a venda de equipamentos e acessórios de alta performance para banho e tosa.</p>
 
@@ -141,7 +159,8 @@ export function Home() {
                     <CardsSec3>
                         <Card style={{
                             background: `url('${CardBackground}')`,
-                            backgroundSize: "cover"
+                            backgroundSize: "cover",
+                            display: 'none'
                         }} data-aos="flip-left" data-aos-delay="200" data-aos-duration="800">
                             <div>
                                 <h3>VENDA DE PRODUTOS</h3>
@@ -158,7 +177,8 @@ export function Home() {
                         </Card>
                         <Card style={{
                             background: `url('${CardBackground1}')`,
-                            backgroundSize: "cover"
+                            backgroundSize: "cover",
+                            backgroundPosition: "center"
                         }} data-aos="flip-left" data-aos-delay="400" data-aos-duration="800">
                             <div>
                                 <h3>ASSISTÊNCIA TECNICA</h3>
@@ -175,7 +195,8 @@ export function Home() {
                         </Card>
                         <Card style={{
                             background: `url('${CardBackground2}')`,
-                            backgroundSize: "cover"
+                            backgroundSize: "cover",
+                            backgroundPosition: "top",
                         }} data-aos="flip-left" data-aos-delay="600" data-aos-duration="800">
                             <div>
                                 <h3>SOBRE OS EQUIPAMENTOS</h3>
@@ -211,10 +232,10 @@ export function Home() {
                                 <IoLogoInstagram className="IconSpan" /> <p>@cutelariapets</p>
                             </div>
                             <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
-                                <FaMapMarker className="IconSpan" /> <p>Rua José Francisco da Silva, Cristo Redentor, João Pessoa - PB</p>
+                                <FaMapMarker className="IconSpan" /> <p>Rua José Francisco da Silva 2094, Cristo Redentor, João Pessoa - PB</p>
                             </div>
                             <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
-                                <FaWhatsapp className="IconSpan" /> <p>83 98616-6367</p>
+                                <FaWhatsapp className="IconSpan" /> <p>83 99616-6367</p>
                             </div>
                         </span>
 

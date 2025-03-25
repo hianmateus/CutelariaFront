@@ -70,7 +70,6 @@ const calculateFreight = (distance, weight) => {
     return baseRate + (distance * distanceRate) + (weight * weightRate);
 };
 
-// Modificação na função onSubmit para calcular a distância e o frete
 const onSubmit = async (data) => {
     setAddress({ 
         cep: data.cep,  
@@ -81,29 +80,24 @@ const onSubmit = async (data) => {
         complemento: data.complemento
     });
 
-    const cepOrigem = "58071-120"; // CEP fixo de origem
-    const cepDestino = data.cep; // CEP informado pelo usuário
+    const cepOrigem = "58071-120"; // CEP de origem
+    const cepDestino = data.cep; // CEP do usuário
 
-    console.log(`Calculando distância entre ${cepOrigem} e ${cepDestino}...`);
 
     const origem = await getCoordinates(cepOrigem);
     const destino = await getCoordinates(cepDestino);
 
     if (origem && destino) {
         const distance = calculateDistance(origem.latitude, origem.longitude, destino.latitude, destino.longitude);
-        console.log(`Distância entre ${cepOrigem} e ${cepDestino}: ${distance.toFixed(2)} km`);
 
-        // Pegando o peso dos produtos do totalValues
-        const weight = totalValues.weight || 0; // Certifique-se de que essa variável está acessível e armazenando o peso total
+        // peso dos produtos do totalValues
+        const weight = totalValues.peso;
 
         // Calculando o frete
         const freightCost = calculateFreight(distance, weight);
-        console.log(`Frete calculado: R$ ${freightCost.toFixed(2)}`);
 
-        // Atualizando o estado do frete
+        // Atualizar estado do frete
         setDeliveryTax(freightCost);
-    } else {
-        console.log("Não foi possível calcular a distância. Verifique se o CEP está correto.");
     }
 
     setVisivelInfo(false);

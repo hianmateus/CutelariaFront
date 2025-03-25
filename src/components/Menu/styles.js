@@ -98,3 +98,13 @@ export const AcessoryContainer = styled.div`
     flex-wrap: wrap;
     gap: 30px;
 `
+
+export const InputProducts = styled.input`
+    width: 280px;
+    height: 40px;
+    background-color: white;
+    border-radius: 7px;
+    padding-left: 8px;
+    font-size: 19px;
+    margin-bottom: 25px;
+`

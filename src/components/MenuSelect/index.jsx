@@ -7,7 +7,7 @@ import {
     Pricepix, DivButtons,
     ButtonShop, ButtonLink,
     TextPix, DivImage,
-    ButtonClose
+    ButtonClose, OfferBanner, Offertitle, Stock, StockOff
 } from './styles'
 import { useCart } from "../../hooks/CartContext";
 import { formatPrice } from "../../utils/formartPrice";
@@ -37,10 +37,21 @@ export function MenuSelect({ selectMenu, setSelectMenu, selectedProduct }) {
         }}>
 
             <General>
+                <OfferBanner style={{ display: product.offer ? 'flex' : 'none' }}>
+                    <Offertitle>EM OFERTA</Offertitle>
+                </OfferBanner>
+
                 <ButtonClose onClick={() => setSelectMenu(false)}>X</ButtonClose>
 
                 <DivImage>
+                    <StockOff style={{ display: product.stock < 1 ? "flex" : "none" }}>
+                        <p>ESGOTADO</p>
+                    </StockOff>
+
                     <ImageProduct src={product.url} alt={product.name} />
+
+                    <Stock>Disponiveis: {product.stock}</Stock>
+
                 </DivImage>
 
                 <SpanProduct>
@@ -54,13 +65,13 @@ export function MenuSelect({ selectMenu, setSelectMenu, selectedProduct }) {
                     </DescProduct>
 
                     <PriceProduct>
-                        <Price>{product.currencyValue}</Price>
+                        <Price style={{ color: product.offer ? '#00e600' : '#fdc800' }}>{product.currencyValue}</Price>
                         <Pricepix>{formatPrice(product.price * 0.9)} via PIX</Pricepix>
 
                         <TextPix>Outras formas de pagamentos podem ser feitas na finalização da Compra</TextPix>
 
                         <DivButtons>
-                            <ButtonShop onClick={() => { putProductInCart(product); setSelectMenu(false) }}><MdOutlineAddShoppingCart className="IconShop"/> Adicionar ao Carrinho</ButtonShop>
+                            <ButtonShop onClick={() => { putProductInCart(product); setSelectMenu(false) }}><MdOutlineAddShoppingCart className="IconShop" /> Adicionar ao Carrinho</ButtonShop>
 
                             <ButtonLink> <img className="IconShop" src={MercadoIcon} alt="icon-mercado-livre-png" /> Confira no Mercado</ButtonLink>
                         </DivButtons>

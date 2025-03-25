@@ -6,8 +6,13 @@ import { Link as ReactLink } from "react-router-dom";
 export const General = styled.div`
     height: 100vh;
     max-width: 100vw;
-    display: flex
-;`
+    display: flex;
+    
+    @media (max-width: 650px) {
+        flex-wrap: wrap;
+        justify-content: center;
+  }
+`
 
 export const ConteinerRight = styled.div`
     width: 65%;
@@ -17,10 +22,18 @@ export const ConteinerRight = styled.div`
     background-size: cover;
     align-items: center;
 
+    @media (max-width: 650px) {
+        width: 100%;
+  }
+
     img {
         max-width: 100%;
         height: 300px;
         cursor: pointer;
+
+        @media (max-width: 650px) {
+        width: 50%;
+        }
     }
 `
 
@@ -33,6 +46,11 @@ export const ConteinerLeft = styled.div`
     flex-direction: column;
     padding: 0 50px;
 
+    @media (max-width: 650px) {
+        width: 100%;
+        padding: 0;
+        }
+
     h2{
         color: white;
         margin-bottom: 55px;
@@ -40,13 +58,19 @@ export const ConteinerLeft = styled.div`
         width: 420px;
         font-size: 22px;
 
+        @media (max-width: 650px) {
+        width: 100%;
+        }
+
         span{
             color: #f0d900;
         }
     }
 `
 
-export const Form = styled.form``
+export const Form = styled.form`
+    
+`
 
 export const InputContainer = styled.div`
     display: flex;
@@ -65,7 +89,12 @@ export const InputContainer = styled.div`
         height: 45px;
         border-radius: 7px;
         padding-left: 10px;
-        font-size: 16px;    }
+        font-size: 16px;
+
+        @media (max-width: 650px) {
+        margin-bottom: 0;
+        }
+    }
 
     p{
         color: red;
@@ -75,7 +104,7 @@ export const InputContainer = styled.div`
 
 export const PLink = styled.p`
     color: white;
-    margin-top: 35px;
+    margin-top: 15px;
     font-weight: 500;
 
 `

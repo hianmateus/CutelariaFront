@@ -31,9 +31,20 @@ export const Sec1Div = styled.div`
     flex-direction: column;
     gap: 17px;
 
+    @media (max-width: 480px) {
+        width: 95%;
+        left: 10px;
+        justify-content: center;
+        align-items: center;
+  }
+
     h1{
         color: white;
         font-size: 30px;
+
+        @media (max-width: 480px) {
+        text-align: center;
+        }
     }
 
     div{
@@ -45,6 +56,7 @@ export const Sec1Div = styled.div`
     align-items: center;
     justify-content: center;
     gap: 8px;
+    cursor: pointer;
         p{
             color: white;
             font-weight: 600;
@@ -55,6 +67,11 @@ export const Sec1Div = styled.div`
 export const PSec1 = styled.p`
     color: white;
     font-size: 16px;
+
+    @media (max-width: 480px) {
+        text-align: center;
+        font-size: 18px;
+    }
 `
 
 
@@ -76,6 +93,12 @@ export const Sec2Div = styled.div`
     gap: 30px;
     width: 60%;
 
+    @media (max-width: 480px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 95%;
+    }
+
     div{
         display: flex;
         flex-direction: column;
@@ -96,6 +119,10 @@ export const Sec2Div = styled.div`
 
 export const ImgSec2 = styled.img`
     width: 30%;
+
+    @media (max-width: 480px) {
+        width: 70%;
+    }
 `
 
 
@@ -130,6 +157,11 @@ export const Sec3Div = styled.div`
     width: 85%;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
+
+    @media (max-width: 480px) {
+        gap: 70px;
+    }
 `
 
 export const MachineDiv = styled.div`
@@ -189,6 +221,7 @@ export const Sec4Title = styled.h1`
 export const Sec4Desc = styled.p`
     margin-bottom: 70px;
     color: white;
+    text-align: center;
 `
 
 export const DivMarks = styled.div`
@@ -208,10 +241,49 @@ export const Mark = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
     cursor: pointer;
 
-    img{
+    .ImageMarkDiv{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background-color: #1c1c1c;
+
+        &:hover{
+            opacity: 0;
+        }
+
+        img{
         width: 90%;
+
+        @media (max-width: 980px) {
+        width: 190px;
+  }
+    }
+    }
+
+    .DescMark{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        img{
+            width: 50%;
+        }
+
+        p{
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            width: 95%;
+            color: #ffff;
+        }
     }
 `
 
@@ -225,6 +297,11 @@ export const Section5 = styled.section`
     justify-content: center;
     gap: 50px;
     padding: 60px 10px 70px 10px;
+
+    @media (max-width: 480px) {
+        flex-wrap: wrap;
+        gap: 80px;
+    }
 
 `
 

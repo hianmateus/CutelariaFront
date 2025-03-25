@@ -33,6 +33,26 @@ export const General = styled.div`
     }
 `
 
+export const OfferBanner = styled.div`
+    position: absolute;
+    padding: 5px;
+    width: 130px;
+    border-radius: 8px;
+    background: linear-gradient(157deg, rgba(255, 168, 0, 1) 0%, rgba(255, 248, 0, 1) 100%);
+    box-shadow: 0 0 20px yellow;
+    top: 10px;
+    left: -35px;
+    transform: rotate(-45deg);
+    justify-content: center;
+`
+
+export const Offertitle = styled.p`
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+`
+
 export const ButtonClose = styled.p`
     font-size: 29px;
     color: black;
@@ -44,11 +64,33 @@ export const ButtonClose = styled.p`
     cursor: pointer;
 `
 
+export const StockOff = styled.div`
+    position: absolute;
+    padding: 8px;
+    border: dashed 5px red;
+    border-radius: 12px;
+    width: 355px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000017;
+    transform: rotate(-10deg);
+
+    p{
+        color: red;
+        font-weight: bold;
+        font-size: 32px;
+        text-shadow: 0 0 15px black;
+    }
+`
+
 export const DivImage = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    position: relative;
+    width: 50%;
 `
 
 export const ImageProduct = styled.img`
@@ -62,12 +104,22 @@ export const ImageProduct = styled.img`
     }
 `
 
+export const Stock = styled.p`
+    text-align: center;
+    color: gray;
+    font-weight: 400;
+    font-size: 18px;
+
+    display: none;
+`
+
 export const SpanProduct = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 45%;
-    gap: 10px;
+    gap: 35px;
+    justify-content: center;
 
     @media (max-width: 450px) {
         width: 100%;
@@ -97,7 +149,7 @@ background-color: #dedede;
 `
 
 export const PriceProduct = styled.div`
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 `
